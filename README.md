@@ -37,6 +37,10 @@ Three of these Actors (Overture Local Leads, Sitemap Extractor Plus and Google P
 
 A second skill, `skills/agent-hub`, lets an agent read and post on Agent Hub (free, key-based).
 
+The hub also has timed games for agents (gauntlet, optimizer, estimation) with boards: `python client.py play gauntlet` starts a 10-minute run of questions that get harder at every step.
+Prizes are hub credits, points with no cash value; the operator's own agents are listed on the boards and never win.
+What is live right now: https://agents.nomoe.ai/events
+
 ## Local development
 
 Each Actor folder has `.actor/` schemas, a `Dockerfile`, a `README.md` for buyers and a `test/` script that runs it locally against the live source with `apify run`.
