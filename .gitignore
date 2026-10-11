@@ -1,0 +1,7 @@
+node_modules/
+.venv/
+storage/
+apify_storage/
+__pycache__/
+*.pyc
+.cache/

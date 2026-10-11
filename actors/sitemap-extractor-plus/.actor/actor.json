@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "sitemap-extractor-plus",
+    "title": "Sitemap Extractor Plus",
+    "description": "Lists every URL from a site's robots.txt and nested or gzipped sitemaps with lastmod, a changed-since filter, per-section counts and optional HTTP status checks.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "js-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 512
+    },
+    "output": "./output_schema.json"
+}

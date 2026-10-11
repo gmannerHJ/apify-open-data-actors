@@ -1,0 +1,89 @@
+{
+    "title": "Google Play App Intel input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "editor": "select",
+            "enum": ["detail", "search", "developer", "chart"],
+            "enumTitles": ["App details (by package name or URL)", "Search results", "Developer portfolio", "Top chart (category + collection)"],
+            "default": "detail",
+            "description": "What to fetch. Detail returns the full app record; search, developer and chart return ranked lists (add 'Full details' to enrich every list entry)."
+        },
+        "appIds": {
+            "title": "App IDs or Play Store URLs",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Used in detail mode. Android package names (com.spotify.music) or store URLs (https://play.google.com/store/apps/details?id=com.spotify.music).",
+            "prefill": ["com.spotify.music", "com.whatsapp"]
+        },
+        "searchTerms": {
+            "title": "Search terms",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Used in search mode. One Play Store search per term, up to 'Maximum results' apps each.",
+            "prefill": ["budget planner"]
+        },
+        "developerIds": {
+            "title": "Developers",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Used in developer mode. The developer name exactly as shown on Play (Spotify AB) or the numeric developer id from a developer URL (id=5700313618786177705).",
+            "prefill": ["Spotify AB"]
+        },
+        "chartCategory": {
+            "title": "Chart category",
+            "type": "string",
+            "editor": "select",
+            "default": "APPLICATION",
+            "enum": ["APPLICATION", "GAME", "FAMILY", "ANDROID_WEAR", "ART_AND_DESIGN", "AUTO_AND_VEHICLES", "BEAUTY", "BOOKS_AND_REFERENCE", "BUSINESS", "COMICS", "COMMUNICATION", "DATING", "EDUCATION", "ENTERTAINMENT", "EVENTS", "FINANCE", "FOOD_AND_DRINK", "HEALTH_AND_FITNESS", "HOUSE_AND_HOME", "LIBRARIES_AND_DEMO", "LIFESTYLE", "MAPS_AND_NAVIGATION", "MEDICAL", "MUSIC_AND_AUDIO", "NEWS_AND_MAGAZINES", "PARENTING", "PERSONALIZATION", "PHOTOGRAPHY", "PRODUCTIVITY", "SHOPPING", "SOCIAL", "SPORTS", "TOOLS", "TRAVEL_AND_LOCAL", "VIDEO_PLAYERS", "WATCH_FACE", "WEATHER", "GAME_ACTION", "GAME_ADVENTURE", "GAME_ARCADE", "GAME_BOARD", "GAME_CARD", "GAME_CASINO", "GAME_CASUAL", "GAME_EDUCATIONAL", "GAME_MUSIC", "GAME_PUZZLE", "GAME_RACING", "GAME_ROLE_PLAYING", "GAME_SIMULATION", "GAME_SPORTS", "GAME_STRATEGY", "GAME_TRIVIA", "GAME_WORD"],
+            "description": "Used in chart mode. APPLICATION and GAME are the overall charts; the others are category charts."
+        },
+        "chartCollection": {
+            "title": "Chart collection",
+            "type": "string",
+            "editor": "select",
+            "enum": ["TOP_FREE", "TOP_PAID", "GROSSING"],
+            "enumTitles": ["Top free", "Top paid", "Top grossing"],
+            "default": "TOP_FREE",
+            "description": "Used in chart mode."
+        },
+        "country": {
+            "title": "Country (store)",
+            "type": "string",
+            "editor": "textfield",
+            "default": "us",
+            "description": "Two-letter store country: us, gb, de, in, br, jp ... Prices, availability and charts depend on it."
+        },
+        "language": {
+            "title": "Language",
+            "type": "string",
+            "editor": "textfield",
+            "default": "en",
+            "description": "Store language for titles and descriptions (en, es, de, pt-br ...). The data-safety summary is parsed from English pages, so keep en if you need it."
+        },
+        "maxResults": {
+            "title": "Maximum results",
+            "type": "integer",
+            "default": 50,
+            "minimum": 1,
+            "maximum": 500,
+            "description": "Per search term, per developer, or for the chart (up to 500). In detail mode it caps the number of app IDs processed."
+        },
+        "fullDetail": {
+            "title": "Full details for list results",
+            "type": "boolean",
+            "default": false,
+            "description": "In search, developer and chart modes, fetch the full app record for every list entry (installs, histogram, version, IAP, data safety). Each enriched app is charged as an app-detail event and takes about one second."
+        },
+        "includeDataSafety": {
+            "title": "Include data-safety summary",
+            "type": "boolean",
+            "default": true,
+            "description": "Adds the Data safety card of each detailed app (shared and collected data types, encryption in transit, deletion request) parsed from the same page load. No extra request or charge."
+        }
+    },
+    "required": ["mode"]
+}

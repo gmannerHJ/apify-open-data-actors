@@ -1,0 +1,22 @@
+{
+  "name": "sitemap-extractor-plus",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Extracts every URL from a site's robots.txt and nested or gzipped sitemaps, with lastmod, change-since filtering, per-section counts and optional HTTP status checks.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2",
+    "fast-xml-parser": "^4.5.0"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

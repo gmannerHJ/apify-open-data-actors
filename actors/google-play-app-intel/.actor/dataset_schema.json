@@ -1,0 +1,91 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "recordType": { "type": "string", "enum": ["app", "search", "developer", "chart"] },
+            "appId": { "type": "string" },
+            "url": { "type": "string" },
+            "title": { "type": ["string", "null"] },
+            "summary": { "type": ["string", "null"] },
+            "description": { "type": ["string", "null"] },
+            "developer": { "type": ["string", "null"] },
+            "developerId": { "type": ["string", "null"] },
+            "developerEmail": { "type": ["string", "null"] },
+            "developerWebsite": { "type": ["string", "null"] },
+            "developerAddress": { "type": ["string", "null"] },
+            "genre": { "type": ["string", "null"] },
+            "genreId": { "type": ["string", "null"] },
+            "categories": { "type": "array", "items": { "type": "string" } },
+            "installsText": { "type": ["string", "null"] },
+            "minInstalls": { "type": ["integer", "null"] },
+            "maxInstalls": { "type": ["integer", "null"] },
+            "score": { "type": ["number", "null"] },
+            "scoreText": { "type": ["string", "null"] },
+            "ratingsCount": { "type": ["integer", "null"] },
+            "reviewsCount": { "type": ["integer", "null"] },
+            "histogram": { "type": "object" },
+            "price": { "type": "number" },
+            "originalPrice": { "type": ["number", "null"] },
+            "currency": { "type": ["string", "null"] },
+            "priceText": { "type": ["string", "null"] },
+            "free": { "type": "boolean" },
+            "offersIAP": { "type": "boolean" },
+            "iapRange": { "type": ["string", "null"] },
+            "adSupported": { "type": "boolean" },
+            "contentRating": { "type": ["string", "null"] },
+            "contentRatingDescription": { "type": ["string", "null"] },
+            "released": { "type": ["string", "null"] },
+            "updated": { "type": ["string", "null"] },
+            "version": { "type": ["string", "null"] },
+            "androidVersion": { "type": ["string", "null"] },
+            "privacyPolicy": { "type": ["string", "null"] },
+            "icon": { "type": ["string", "null"] },
+            "headerImage": { "type": ["string", "null"] },
+            "screenshotCount": { "type": "integer" },
+            "hasVideo": { "type": "boolean" },
+            "recentChanges": { "type": ["string", "null"] },
+            "available": { "type": ["boolean", "null"] },
+            "preregister": { "type": "boolean" },
+            "playPass": { "type": "boolean" },
+            "dataSafety": { "type": ["object", "null"] },
+            "searchTerm": { "type": "string" },
+            "developerQuery": { "type": "string" },
+            "chartCategory": { "type": "string" },
+            "chartCollection": { "type": "string" },
+            "rank": { "type": "integer" },
+            "position": { "type": "integer" },
+            "snapshotAt": { "type": "string" },
+            "country": { "type": "string" },
+            "language": { "type": "string" },
+            "scrapedAt": { "type": "string" }
+        },
+        "required": ["recordType", "appId", "url", "country", "language", "scrapedAt"]
+    },
+    "views": {
+        "overview": {
+            "title": "Apps",
+            "transformation": {
+                "fields": ["icon", "title", "appId", "developer", "score", "ratingsCount", "installsText", "price", "offersIAP", "updated", "version", "rank", "url"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "icon": { "label": "Icon", "format": "image" },
+                    "title": { "label": "App", "format": "text" },
+                    "appId": { "label": "Package", "format": "text" },
+                    "developer": { "label": "Developer", "format": "text" },
+                    "score": { "label": "Rating", "format": "number" },
+                    "ratingsCount": { "label": "Ratings", "format": "number" },
+                    "installsText": { "label": "Installs", "format": "text" },
+                    "price": { "label": "Price", "format": "number" },
+                    "offersIAP": { "label": "IAP", "format": "boolean" },
+                    "updated": { "label": "Updated", "format": "date" },
+                    "version": { "label": "Version", "format": "text" },
+                    "rank": { "label": "Rank", "format": "number" },
+                    "url": { "label": "Store page", "format": "link" }
+                }
+            }
+        }
+    }
+}

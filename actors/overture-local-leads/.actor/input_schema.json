@@ -1,0 +1,113 @@
+{
+    "title": "Overture Local Leads input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "bbox": {
+            "title": "Bounding box (west,south,east,north)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Area to search, in decimal degrees: west,south,east,north (min longitude, min latitude, max longitude, max latitude). Copy it from bboxfinder.com or any map tool. Up to 10 square degrees per run; split larger regions into several runs.",
+            "prefill": "-97.75,30.26,-97.73,30.28"
+        },
+        "centerLat": {
+            "title": "Or: center latitude",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Alternative to bbox: latitude of the center point, e.g. 30.27. Used only when bbox is empty."
+        },
+        "centerLon": {
+            "title": "Or: center longitude",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Alternative to bbox: longitude of the center point, e.g. -97.74. Used only when bbox is empty."
+        },
+        "radiusKm": {
+            "title": "Radius around the center (km)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Half-width of the square around the center point, 0.05 to 150 km. Default 2.",
+            "default": "2"
+        },
+        "categories": {
+            "title": "Categories",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Overture category names, matched against the primary category, its parents and alternates. Examples: restaurant, cafe, dentist, plumber, hair_salon, real_estate_agent, lawyer, gym, hotel, car_dealer, bar, bakery. Lower case with underscores; leave empty for all businesses.",
+            "prefill": []
+        },
+        "websiteFilter": {
+            "title": "Website filter",
+            "type": "string",
+            "editor": "select",
+            "enum": ["any", "without_website", "with_website"],
+            "enumTitles": ["All businesses", "Only businesses without a website", "Only businesses with a website"],
+            "default": "any",
+            "description": "Pick 'without a website' for web-design and local-SEO prospecting."
+        },
+        "requirePhone": {
+            "title": "Only businesses with a phone number",
+            "type": "boolean",
+            "default": false,
+            "description": "Drop places without a phone number. Combine with 'without a website' for call lists."
+        },
+        "minConfidence": {
+            "title": "Minimum confidence (0 to 1)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Overture's existence confidence score. 0.5 keeps most real businesses; 0.8 keeps only well-corroborated ones. Default 0 (no filter).",
+            "default": "0"
+        },
+        "countries": {
+            "title": "Countries",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Optional ISO 3166-1 alpha-2 codes (US, GB, DE ...). Useful when the bbox crosses a border.",
+            "prefill": []
+        },
+        "excludeClosed": {
+            "title": "Exclude permanently closed places",
+            "type": "boolean",
+            "default": true,
+            "description": "Skip places Overture marks as permanently closed. Temporarily closed places are kept."
+        },
+        "nameContains": {
+            "title": "Name contains",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Optional case-insensitive substring filter on the business name."
+        },
+        "maxResults": {
+            "title": "Maximum leads",
+            "type": "integer",
+            "default": 1000,
+            "minimum": 1,
+            "maximum": 100000,
+            "description": "Stop after this many leads (highest confidence first). The run cost is bounded by this number."
+        },
+        "release": {
+            "title": "Overture release",
+            "type": "string",
+            "editor": "textfield",
+            "default": "2026-09-23.1",
+            "description": "Overture Maps release to read (monthly). See docs.overturemaps.org/release for the list.",
+            "sectionCaption": "Advanced"
+        },
+        "threads": {
+            "title": "DuckDB threads",
+            "type": "integer",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 16,
+            "description": "Parallelism for reading parquet row groups. 4 is right for a 1 GB run."
+        },
+        "memoryLimit": {
+            "title": "DuckDB memory limit",
+            "type": "string",
+            "editor": "textfield",
+            "default": "768MB",
+            "description": "Keep below the run's memory. Raise together with the run memory for very large areas."
+        }
+    },
+    "required": []
+}

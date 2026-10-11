@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Google Play App Intel output",
+    "description": "One row per app or list entry: installs, rating histogram, version, price, in-app purchases, ads flag, developer contact and data-safety summary.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Apps",
+            "description": "One row per app or list entry: installs, rating histogram, version, price, in-app purchases, ads flag, developer contact and data-safety summary.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "overture-local-leads",
+    "title": "Overture Local Leads",
+    "description": "Local business leads from the open Overture Maps Places dataset: name, category, phone, website or no-website flag, address, brand and confidence for any bounding box, without touching Google Maps.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "python-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 1024
+    },
+    "output": "./output_schema.json"
+}

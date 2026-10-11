@@ -1,0 +1,53 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "url": { "type": "string" },
+            "lastmod": { "type": ["string", "null"] },
+            "lastmodRaw": { "type": ["string", "null"] },
+            "changefreq": { "type": ["string", "null"] },
+            "priority": { "type": ["number", "null"] },
+            "site": { "type": ["string", "null"] },
+            "section": { "type": ["string", "null"] },
+            "sitemapUrl": { "type": "string" },
+            "sitemapRoot": { "type": "string" },
+            "sitemapKind": { "type": "string" },
+            "sitemapDepth": { "type": "integer" },
+            "discoveredVia": { "type": "string" },
+            "alternatesCount": { "type": "integer" },
+            "alternates": { "type": ["array", "null"] },
+            "imageCount": { "type": "integer" },
+            "videoCount": { "type": "integer" },
+            "newsTitle": { "type": ["string", "null"] },
+            "newsPublicationDate": { "type": ["string", "null"] },
+            "status": { "type": ["integer", "null"] },
+            "redirected": { "type": "boolean" },
+            "finalUrl": { "type": "string" },
+            "contentType": { "type": ["string", "null"] },
+            "statusError": { "type": "string" },
+            "statusCheckedAt": { "type": "string" }
+        },
+        "required": ["url", "sitemapUrl"]
+    },
+    "views": {
+        "overview": {
+            "title": "URLs",
+            "transformation": {
+                "fields": ["url", "lastmod", "section", "changefreq", "priority", "status", "sitemapUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "URL", "format": "link" },
+                    "lastmod": { "label": "Last modified", "format": "date" },
+                    "section": { "label": "Section", "format": "text" },
+                    "changefreq": { "label": "Change freq", "format": "text" },
+                    "priority": { "label": "Priority", "format": "number" },
+                    "status": { "label": "HTTP status", "format": "number" },
+                    "sitemapUrl": { "label": "Sitemap", "format": "link" }
+                }
+            }
+        }
+    }
+}

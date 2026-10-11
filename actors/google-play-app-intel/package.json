@@ -1,0 +1,22 @@
+{
+  "name": "google-play-app-intel",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Google Play app details, search results, developer portfolios and top charts with installs, rating histogram, pricing, in-app purchase flag and the data-safety summary.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2",
+    "google-play-scraper": "^10.1.3"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

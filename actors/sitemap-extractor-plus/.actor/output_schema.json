@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Sitemap Extractor Plus output",
+    "description": "One row per unique URL with lastmod, changefreq, priority, section, source sitemap and optional HTTP status; a final SUMMARY row lists per-sitemap status.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "URLs",
+            "description": "One row per unique URL with lastmod, changefreq, priority, section, source sitemap and optional HTTP status; a final SUMMARY row lists per-sitemap status.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

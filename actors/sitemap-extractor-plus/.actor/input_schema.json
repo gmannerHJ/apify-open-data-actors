@@ -1,0 +1,100 @@
+{
+    "title": "Sitemap Extractor Plus input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Sites or sitemap URLs",
+            "type": "array",
+            "editor": "requestListSources",
+            "description": "Site homepages (the Actor reads robots.txt and falls back to /sitemap.xml and friends) or direct sitemap URLs (.xml, .xml.gz, .txt, sitemap indexes).",
+            "prefill": [{ "url": "https://www.gov.uk/sitemap.xml" }]
+        },
+        "changedSince": {
+            "title": "Only URLs changed since",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Keep only URLs whose <lastmod> is at or after this moment. Accepts an ISO date (2026-10-01), an ISO datetime, or a relative period: 24h, 7d, 2w, 1m. Child sitemaps whose own lastmod is older are skipped entirely, which makes incremental runs fast. Leave empty to list everything.",
+            "example": "7d"
+        },
+        "keepUrlsWithoutLastmod": {
+            "title": "Keep URLs without lastmod when filtering by date",
+            "type": "boolean",
+            "default": false,
+            "description": "When 'Only URLs changed since' is set, URLs that have no <lastmod> are dropped by default. Enable this to keep them."
+        },
+        "includeUrlPattern": {
+            "title": "Include URL pattern (regex)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Only list URLs matching this case-insensitive regular expression, e.g. ^https://www\\.example\\.com/blog/",
+            "example": "/blog/"
+        },
+        "excludeUrlPattern": {
+            "title": "Exclude URL pattern (regex)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Skip URLs matching this case-insensitive regular expression, e.g. \\.(jpg|png|pdf)$",
+            "example": "\\?page="
+        },
+        "checkStatus": {
+            "title": "Check HTTP status of each URL",
+            "type": "boolean",
+            "default": false,
+            "description": "Send a HEAD request (GET fallback) to every listed URL, 5 at a time, and add status, finalUrl, redirected and contentType. Charged as a separate 'status-checked' event."
+        },
+        "maxUrls": {
+            "title": "Maximum URLs",
+            "type": "integer",
+            "default": 10000,
+            "minimum": 1,
+            "maximum": 1000000,
+            "description": "Stop after this many unique URLs have been listed. The run cost is bounded by this number."
+        },
+        "maxSitemaps": {
+            "title": "Maximum sitemap files",
+            "type": "integer",
+            "default": 500,
+            "minimum": 1,
+            "maximum": 20000,
+            "description": "Stop fetching sitemap files after this many (indexes and leaves combined)."
+        },
+        "maxDepth": {
+            "title": "Maximum index nesting depth",
+            "type": "integer",
+            "default": 5,
+            "minimum": 0,
+            "maximum": 10,
+            "description": "How many levels of sitemap indexes to follow. 0 reads only the sitemaps named in robots.txt or the input."
+        },
+        "discoverFromRobots": {
+            "title": "Discover sitemaps from robots.txt",
+            "type": "boolean",
+            "default": true,
+            "description": "For site URLs, read /robots.txt 'Sitemap:' lines first. If disabled or nothing is listed, common paths such as /sitemap.xml and /sitemap_index.xml are tried."
+        },
+        "skipUnchangedSitemaps": {
+            "title": "Skip child sitemaps older than the date filter",
+            "type": "boolean",
+            "default": true,
+            "description": "When filtering by date, do not download child sitemaps whose <lastmod> in the index is older than the cutoff."
+        },
+        "requestTimeoutSecs": {
+            "title": "Request timeout (seconds)",
+            "type": "integer",
+            "default": 60,
+            "minimum": 5,
+            "maximum": 300,
+            "description": "Per-request timeout for sitemap downloads and status checks.",
+            "sectionCaption": "Advanced"
+        },
+        "userAgent": {
+            "title": "User-Agent header",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Sent with every request. The default is a plain desktop browser string.",
+            "default": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+        }
+    },
+    "required": ["startUrls"]
+}

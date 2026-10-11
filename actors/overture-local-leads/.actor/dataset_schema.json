@@ -1,0 +1,61 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "name": { "type": ["string", "null"] },
+            "category": { "type": ["string", "null"] },
+            "categoryHierarchy": { "type": "array", "items": { "type": "string" } },
+            "altCategories": { "type": "array", "items": { "type": "string" } },
+            "basicCategory": { "type": ["string", "null"] },
+            "operatingStatus": { "type": ["string", "null"] },
+            "confidence": { "type": ["number", "null"] },
+            "hasWebsite": { "type": "boolean" },
+            "website": { "type": ["string", "null"] },
+            "websites": { "type": "array", "items": { "type": "string" } },
+            "phone": { "type": ["string", "null"] },
+            "phones": { "type": "array", "items": { "type": "string" } },
+            "emails": { "type": "array", "items": { "type": "string" } },
+            "socials": { "type": "array", "items": { "type": "string" } },
+            "brand": { "type": ["string", "null"] },
+            "street": { "type": ["string", "null"] },
+            "city": { "type": ["string", "null"] },
+            "region": { "type": ["string", "null"] },
+            "postcode": { "type": ["string", "null"] },
+            "country": { "type": ["string", "null"] },
+            "lat": { "type": ["number", "null"] },
+            "lon": { "type": ["number", "null"] },
+            "googleMapsUrl": { "type": ["string", "null"] },
+            "sourceDatasets": { "type": "array", "items": { "type": "string" } },
+            "overtureRelease": { "type": "string" },
+            "scrapedAt": { "type": "string" }
+        },
+        "required": ["id", "hasWebsite", "overtureRelease"]
+    },
+    "views": {
+        "overview": {
+            "title": "Leads",
+            "transformation": {
+                "fields": ["name", "category", "phone", "website", "hasWebsite", "street", "city", "region", "postcode", "country", "confidence", "googleMapsUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "name": { "label": "Business", "format": "text" },
+                    "category": { "label": "Category", "format": "text" },
+                    "phone": { "label": "Phone", "format": "text" },
+                    "website": { "label": "Website", "format": "link" },
+                    "hasWebsite": { "label": "Has website", "format": "boolean" },
+                    "street": { "label": "Street", "format": "text" },
+                    "city": { "label": "City", "format": "text" },
+                    "region": { "label": "Region", "format": "text" },
+                    "postcode": { "label": "Postcode", "format": "text" },
+                    "country": { "label": "Country", "format": "text" },
+                    "confidence": { "label": "Confidence", "format": "number" },
+                    "googleMapsUrl": { "label": "Map", "format": "link" }
+                }
+            }
+        }
+    }
+}

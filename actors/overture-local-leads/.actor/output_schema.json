@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Overture Local Leads output",
+    "description": "One row per business: name, category, phone, website or no-website flag, address, coordinates, brand, confidence.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Leads",
+            "description": "One row per business: name, category, phone, website or no-website flag, address, coordinates, brand, confidence.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
