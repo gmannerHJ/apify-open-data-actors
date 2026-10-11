@@ -1,0 +1,83 @@
+{
+    "title": "Google News Feed input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "queries": {
+            "title": "Search queries",
+            "type": "array",
+            "editor": "stringList",
+            "description": "One Google News search per entry, up to 100 results each. Google search operators work: quotes, OR, -word, site:reuters.com, intitle:, allintext:, and the time operators when:1h, when:1d, when:7d. Leave empty to use topics or feed URLs only.",
+            "prefill": ["Tesla when:1d", "\"Samsung Electronics\" earnings"]
+        },
+        "topics": {
+            "title": "Topics",
+            "type": "array",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["TOP", "WORLD", "NATION", "BUSINESS", "TECHNOLOGY", "ENTERTAINMENT", "SPORTS", "SCIENCE", "HEALTH"],
+                "enumTitles": ["Top stories", "World", "Nation (local to the edition)", "Business", "Technology", "Entertainment", "Sports", "Science", "Health"]
+            },
+            "default": [],
+            "description": "Google News section feeds for the selected edition. Each topic returns the current headlines of that section (typically 30 to 70 items)."
+        },
+        "feedUrls": {
+            "title": "Topic or location page URLs",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Google News topic pages copied from news.google.com (https://news.google.com/topics/CAAq..., including sub-topics such as Artificial intelligence or Premier League) and location sections (/headlines/section/geo/New York). The matching RSS feed is read in the selected edition. Publication and story pages have no RSS feed; use a site:domain.com query instead.",
+            "example": ["https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtVnVHZ0pWVXlnQVAB"]
+        },
+        "language": {
+            "title": "Language (hl)",
+            "type": "string",
+            "editor": "textfield",
+            "default": "en-US",
+            "description": "Google News interface language, e.g. en-US, en-GB, de, fr, es, pt-BR, ja, ko, hi, ar, zh-CN. Together with the country it selects the edition."
+        },
+        "country": {
+            "title": "Country (gl)",
+            "type": "string",
+            "editor": "textfield",
+            "default": "US",
+            "description": "Two-letter edition country: US, GB, DE, FR, IN, BR, JP, KR, AU ... Results, topics and the 'Nation' section depend on it."
+        },
+        "ceid": {
+            "title": "Edition id (ceid) override",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Normally derived as COUNTRY:language (US:en, DE:de, BR:pt-419, CN:zh-Hans). Set it only if Google's edition id differs from that rule for your combination.",
+            "example": "BR:pt-419",
+            "sectionCaption": "Advanced"
+        },
+        "publishedSince": {
+            "title": "Published since",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Keep only items published at or after this moment: an ISO date (2026-10-01), an ISO datetime, or a relative period such as 2h, 24h, 7d, 30d. Search queries without a when: or after: operator also get after:YYYY-MM-DD appended so Google returns recent items first.",
+            "example": "24h"
+        },
+        "maxResults": {
+            "title": "Maximum results per query or feed",
+            "type": "integer",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 100,
+            "description": "Google News RSS returns at most 100 items per search and roughly 30 to 70 per topic; this caps what is kept from each."
+        },
+        "decodeUrls": {
+            "title": "Resolve publisher URLs",
+            "type": "boolean",
+            "default": true,
+            "description": "Google's feed links point to news.google.com redirect pages. When enabled, each link is resolved to the publisher's article URL through Google's own redirect service (no browser), five in parallel. Items that cannot be resolved keep the Google link with decoded=false. Also enables deduplication by publisher URL."
+        },
+        "fetchArticleText": {
+            "title": "Fetch article text",
+            "type": "boolean",
+            "default": false,
+            "description": "After resolving the URL, download the article page (10 s timeout, 5 in parallel) and extract the body text (JSON-LD articleBody, then the main article paragraphs) plus the meta description. Charged as a separate article-text event only when text was extracted; blocked or paywalled pages are reported in articleTextStatus and not charged."
+        }
+    },
+    "required": []
+}

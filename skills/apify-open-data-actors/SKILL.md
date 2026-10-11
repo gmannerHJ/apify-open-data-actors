@@ -1,11 +1,11 @@
 ---
 name: apify-open-data-actors
-description: Get local business leads (Overture Maps), full sitemap URL lists with lastmod and status, Google Play app intelligence, French real-estate listings (Bien'ici), Shopify storefront tech stacks and contacts, and Kalshi weather-market odds versus forecasts through six pay-per-result Apify Actors. Use when a task needs businesses in an area, all URLs of a website, app-store data, French property listings, Shopify store profiling or weather-market data, and the user has an Apify token (APIFY_TOKEN). Each run costs fractions of a cent per result; quote the price before running.
+description: Get local business leads (Overture Maps), full sitemap URL lists with lastmod and status, Google Play app intelligence, French real-estate listings (Bien'ici), Shopify storefront tech stacks and contacts, and Kalshi weather-market odds versus forecasts plus Google News articles and Yahoo Finance quotes, history, fundamentals and options, through eight pay-per-result Apify Actors. Use when a task needs businesses in an area, all URLs of a website, app-store data, French property listings, Shopify store profiling or weather-market data, and the user has an Apify token (APIFY_TOKEN). Each run costs fractions of a cent per result; quote the price before running.
 ---
 
 # Apify open-data Actors
 
-Six Actors on the Apify Store, each returning a clean dataset and charging per result. You need `APIFY_TOKEN` (free Apify account; the free plan includes $5 of monthly usage).
+Eight Actors on the Apify Store, each returning a clean dataset and charging per result. You need `APIFY_TOKEN` (free Apify account; the free plan includes $5 of monthly usage).
 
 | Need | Actor id | Price (USD) |
 |---|---|---|
@@ -15,6 +15,8 @@ Six Actors on the Apify Store, each returning a clean dataset and charging per r
 | French sale or rental listings by city, postcode or department, with price, surface, rooms, DPE class | `gmanner~bienici-fr-listings` | 0.005 per run + 0.0025 per listing |
 | Shopify storefront profile: theme, installed apps, product counts, last update, role mailboxes | `gmanner~shopify-app-stack-leads` | 0.001 per run + 0.012 per analysed store (unreachable rows free) |
 | Kalshi daily weather markets with order book, forecasts, model probability and edge | `gmanner~kalshi-weather-edge` | 0.005 per run + 0.004 per scored market (unscored rows free) |
+| Google News articles by query/topic/feed URL with decoded publisher URLs, optional article text | `gmanner~google-news-feed` | 0.002 per run + 0.001 per article (+0.004 per article text) |
+| Yahoo Finance quotes, history, fundamentals, options with Greeks, search, news | `gmanner~yahoo-finance-data` | 0.002 per run + 0.0005 per quote, 0.005 per 100 history bars, 0.002 per fundamentals module, 0.0003 per option row, 0.001 per news row |
 
 ## How to run (any Actor)
 
@@ -71,6 +73,23 @@ Locations accept city names, arrondissements (Paris 11e), postcodes or departmen
 ```
 Main output fields: ticker, seriesTicker, kind, title, bracketLabel, city, stationCode, targetDate, leadDays, bracketLow, bracketHigh, yesBid, yesAsk, yesMid, volume, openInterest, bookYesBidSize, bookYesAskSize, nwsHigh, nwsLow, nwsPop, openMeteoHigh, openMeteoLow, openMeteoPop, observedHighSoFar, observedLowSoFar, forecastValue, sigma, modelProbability, edge, scored, notes. The model is descriptive (normal bracket probability around the mean forecast with a stated sigma); nothing here is trading advice.
 
+**google-news-feed**
+```json
+{"queries": ["Tesla when:1d", "Federal Reserve rates"], "topics": ["TECHNOLOGY"], "language": "en", "country": "US", "maxResults": 50, "decodeUrls": true, "fetchArticleText": false}
+```
+Topics: TOP, WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE, HEALTH; `feedUrls` accepts news.google.com topic or search URLs; `publishedSince` takes ISO or 2h/24h/7d. Output fields: title, publisher, publisherUrl, url (decoded), googleUrl, decoded, publishedAt, snippet, query, topic, feedUrl, language, country, articleText (when requested).
+
+**yahoo-finance-data**
+```json
+{"mode": "quotes", "symbols": ["AAPL", "005930.KS", "BTC-USD", "EURUSD=X"]}
+{"mode": "history", "symbols": ["AAPL"], "interval": "1d", "range": "5y", "includeEvents": true}
+{"mode": "fundamentals", "symbols": ["AAPL"], "modules": ["financialData", "defaultKeyStatistics", "earnings"]}
+{"mode": "options", "symbols": ["AAPL"], "optionsExpirations": 2, "includeGreeks": true}
+{"mode": "search", "queries": ["samsung electronics"]}
+{"mode": "news", "symbols": ["AAPL"], "maxResults": 15}
+```
+Rows carry recordType, symbol, asOf, currency, exchange plus the mode's fields (quote fields, OHLCV bars with adjClose, dividend/split rows, fundamentals module data, option contracts with delta/gamma/theta/vega/rho, search hits, news items).
+
 ## Limits
 - Overture data is a monthly release (no live hours or reviews).
 - Some CDNs refuse sitemap fetches (reported in SUMMARY, not charged).
@@ -78,3 +97,5 @@ Main output fields: ticker, seriesTicker, kind, title, bracketLabel, city, stati
 - Bien'ici coordinates are blurred 50 to 250 m by the site and price history is not exposed; Paris rentals are sparse there.
 - Shopify app detection sees only what the homepage loads; Plus is a hint, not a fact; some stores answer 429 to non-browser clients (reported as blocked, not charged).
 - Kalshi lists weather markets only one or two days ahead; sigma per station is an assumption stated in the output; international series are listed but not modelled in Celsius yet.
+- Google News RSS returns at most 100 items per query and 30–70 per topic; publication and story pages have no RSS (use site: queries); some publishers block article-text fetches.
+- Yahoo Finance quote/fundamentals/options need a cookie-and-crumb handshake that shared cloud IPs can occasionally be refused; the Actor falls back to chart metadata for quotes and reports blocked endpoints in SUMMARY.

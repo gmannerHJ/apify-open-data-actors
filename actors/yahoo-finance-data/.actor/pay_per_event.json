@@ -1,0 +1,37 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run, covering the Yahoo session handshake.",
+        "eventPriceUsd": 0.002
+    },
+    "quote-row": {
+        "eventTitle": "Quote row",
+        "eventDescription": "One symbol's quote: price, change, open/high/low/previous close, volume, bid/ask, market cap, P/E, EPS, dividend, 52-week range, averages, pre/post-market fields.",
+        "eventPriceUsd": 0.0005
+    },
+    "history-100bars": {
+        "eventTitle": "History, 100 bars",
+        "eventDescription": "Each started block of 100 history rows per symbol (OHLCV bars plus dividend and split rows). 1,260 daily bars over five years are 13 events.",
+        "eventPriceUsd": 0.005
+    },
+    "fundamentals-module": {
+        "eventTitle": "Fundamentals module",
+        "eventDescription": "One quoteSummary module for one symbol (summaryDetail, financialData, defaultKeyStatistics, incomeStatementHistory and so on) as plain numeric fields.",
+        "eventPriceUsd": 0.002
+    },
+    "options-row": {
+        "eventTitle": "Option contract",
+        "eventDescription": "One call or put contract with strike, bid/ask, last, volume, open interest, implied volatility and computed Greeks.",
+        "eventPriceUsd": 0.0003
+    },
+    "search-row": {
+        "eventTitle": "Search match",
+        "eventDescription": "One symbol matched by a search query, with exchange, type, sector and industry.",
+        "eventPriceUsd": 0.0002
+    },
+    "news-row": {
+        "eventTitle": "News row",
+        "eventDescription": "One headline for a symbol with publisher, link, publication time and related tickers.",
+        "eventPriceUsd": 0.001
+    }
+}

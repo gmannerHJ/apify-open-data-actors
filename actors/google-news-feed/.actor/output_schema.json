@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Google News Feed output",
+    "description": "One row per article: title, publisher and publisher site, resolved article URL and the original Google link, ISO publication time, snippet, the query or topic that found it, edition, and optional article text.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Articles",
+            "description": "One row per article: title, publisher and publisher site, resolved article URL and the original Google link, ISO publication time, snippet, the query or topic that found it, edition, and optional article text.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

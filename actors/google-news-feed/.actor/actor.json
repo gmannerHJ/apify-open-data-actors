@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "google-news-feed",
+    "title": "Google News Feed",
+    "description": "Google News headlines by search query (operators, when:1d), section topic or any topic page URL in any language and country, with the publisher URL resolved from Google's redirect links, ISO dates, deduplication and optional article text. No browser, no login.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "js-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 512
+    },
+    "output": "./output_schema.json"
+}

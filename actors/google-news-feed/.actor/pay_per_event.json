@@ -1,0 +1,17 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run, covering the feed downloads.",
+        "eventPriceUsd": 0.002
+    },
+    "article": {
+        "eventTitle": "Article",
+        "eventDescription": "One deduplicated article row: title, publisher, resolved publisher URL and Google link, ISO publication time, snippet, query or topic, edition.",
+        "eventPriceUsd": 0.001
+    },
+    "article-text": {
+        "eventTitle": "Article text",
+        "eventDescription": "Body text and meta description extracted from the publisher's page. Charged only when 'Fetch article text' is enabled and text was actually extracted; blocked, paywalled or empty pages are not charged.",
+        "eventPriceUsd": 0.004
+    }
+}

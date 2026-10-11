@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "yahoo-finance-data",
+    "title": "Yahoo Finance Data",
+    "description": "Yahoo Finance quotes, OHLCV history (1m to 1mo, dividends and splits), fundamentals by quoteSummary module, options chains with computed Greeks, symbol search and news for stocks, ETFs, indices, crypto and FX worldwide. Handles the cookie and crumb handshake; no browser.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "js-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 512
+    },
+    "output": "./output_schema.json"
+}

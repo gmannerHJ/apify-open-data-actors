@@ -1,0 +1,48 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "title": { "type": "string" },
+            "publisher": { "type": ["string", "null"] },
+            "publisherUrl": { "type": ["string", "null"] },
+            "url": { "type": "string" },
+            "googleUrl": { "type": "string" },
+            "decoded": { "type": "boolean" },
+            "publishedAt": { "type": ["string", "null"] },
+            "snippet": { "type": ["string", "null"] },
+            "query": { "type": ["string", "null"] },
+            "topic": { "type": ["string", "null"] },
+            "feedUrl": { "type": "string" },
+            "language": { "type": "string" },
+            "country": { "type": "string" },
+            "articleText": { "type": ["string", "null"] },
+            "articleTextStatus": { "type": ["string", "null"] },
+            "articleTextChars": { "type": ["integer", "null"] },
+            "fetchedAt": { "type": "string" }
+        },
+        "required": ["id", "title", "url", "googleUrl", "decoded", "feedUrl", "language", "country", "fetchedAt"]
+    },
+    "views": {
+        "overview": {
+            "title": "Articles",
+            "transformation": {
+                "fields": ["publishedAt", "title", "publisher", "url", "query", "topic", "decoded", "articleTextStatus"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "publishedAt": { "label": "Published", "format": "date" },
+                    "title": { "label": "Title", "format": "text" },
+                    "publisher": { "label": "Publisher", "format": "text" },
+                    "url": { "label": "Article", "format": "link" },
+                    "query": { "label": "Query", "format": "text" },
+                    "topic": { "label": "Topic", "format": "text" },
+                    "decoded": { "label": "URL resolved", "format": "boolean" },
+                    "articleTextStatus": { "label": "Text", "format": "text" }
+                }
+            }
+        }
+    }
+}

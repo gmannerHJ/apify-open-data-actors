@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Yahoo Finance Data output",
+    "description": "Rows normalised per mode (recordType quote, bar, dividend, split, capitalGain, fundamentals, option, search, news), each with symbol, asOf, currency and exchange plus the full numeric fields from Yahoo.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Rows",
+            "description": "Rows normalised per mode (recordType quote, bar, dividend, split, capitalGain, fundamentals, option, search, news), each with symbol, asOf, currency and exchange plus the full numeric fields from Yahoo.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "google-news-feed",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Google News headlines by search query, topic or custom feed in any edition, with publisher URLs resolved from Google's redirect links, ISO dates, deduplication and optional article text.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

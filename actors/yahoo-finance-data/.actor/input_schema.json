@@ -1,0 +1,135 @@
+{
+    "title": "Yahoo Finance Data input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "editor": "select",
+            "enum": ["quotes", "history", "fundamentals", "options", "search", "news"],
+            "enumTitles": ["Quotes (one row per symbol)", "History (one row per bar, plus dividends and splits)", "Fundamentals (one row per symbol and module)", "Options (one row per contract)", "Search (query to symbols)", "News (headlines per symbol)"],
+            "default": "quotes",
+            "description": "What to fetch. All modes except search take the symbols list; search takes queries."
+        },
+        "symbols": {
+            "title": "Symbols",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Yahoo Finance symbols: US stocks and ETFs (AAPL, SPY), other exchanges with their suffix (005930.KS, 7203.T, SAP.DE, ASML.AS, RELIANCE.NS, SHOP.TO), indices (^GSPC, ^N225), crypto (BTC-USD), FX (EURUSD=X), futures (GC=F). Up to 500 per run.",
+            "prefill": ["AAPL", "MSFT", "005930.KS", "BTC-USD"]
+        },
+        "queries": {
+            "title": "Search queries",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Used in search mode: company or fund names, tickers or ISINs (samsung electronics, US0378331005). Each query returns matching symbols with exchange and type.",
+            "example": ["samsung electronics", "vanguard total market"]
+        },
+        "interval": {
+            "title": "Bar interval (history)",
+            "type": "string",
+            "editor": "select",
+            "enum": ["1m", "2m", "5m", "15m", "30m", "60m", "90m", "1h", "1d", "5d", "1wk", "1mo", "3mo"],
+            "default": "1d",
+            "description": "Bar size for history mode. Yahoo keeps about 30 days of 1m bars (7 days per request), 60 days of 2m to 90m bars and 730 days of 1h bars; daily and coarser bars go back to the first trade."
+        },
+        "range": {
+            "title": "Range (history)",
+            "type": "string",
+            "editor": "select",
+            "enum": ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"],
+            "default": "1mo",
+            "description": "How far back history mode reaches, counted from now. Ignored when a start date is given."
+        },
+        "startDate": {
+            "title": "Start date (history)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Explicit start of the history window, YYYY-MM-DD or ISO datetime (UTC). Overrides the range.",
+            "example": "2024-01-01"
+        },
+        "endDate": {
+            "title": "End date (history)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Explicit end of the history window, YYYY-MM-DD or ISO datetime (UTC). Defaults to now; used only together with a start date.",
+            "example": "2024-12-31"
+        },
+        "adjusted": {
+            "title": "Include adjusted prices (history)",
+            "type": "boolean",
+            "default": true,
+            "description": "Adds adjClose (Yahoo's split- and dividend-adjusted close) and adjOpen, adjHigh, adjLow scaled by the same factor. Raw open, high, low, close and volume are always present."
+        },
+        "includeEvents": {
+            "title": "Include dividends and splits (history)",
+            "type": "boolean",
+            "default": true,
+            "description": "Adds one row per dividend, stock split and fund capital gain inside the window (recordType dividend, split, capitalGain). They count toward the history bars charged."
+        },
+        "includePrePost": {
+            "title": "Include pre- and post-market bars (history)",
+            "type": "boolean",
+            "default": false,
+            "description": "For intraday intervals, also return bars from the pre-market and after-hours sessions."
+        },
+        "modules": {
+            "title": "quoteSummary modules (fundamentals)",
+            "type": "array",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["summaryDetail", "price", "quoteType", "financialData", "defaultKeyStatistics", "assetProfile", "summaryProfile", "calendarEvents", "earnings", "earningsHistory", "earningsTrend", "recommendationTrend", "upgradeDowngradeHistory", "incomeStatementHistory", "incomeStatementHistoryQuarterly", "balanceSheetHistory", "balanceSheetHistoryQuarterly", "cashflowStatementHistory", "cashflowStatementHistoryQuarterly", "majorHoldersBreakdown", "institutionOwnership", "fundOwnership", "insiderHolders", "insiderTransactions", "netSharePurchaseActivity", "secFilings", "esgScores", "indexTrend", "industryTrend", "sectorTrend", "fundProfile", "topHoldings", "fundPerformance"],
+                "enumTitles": ["summaryDetail (price, volume, P/E, dividend, beta)", "price (current price block)", "quoteType (name, exchange, type)", "financialData (margins, cash, debt, targets, recommendation)", "defaultKeyStatistics (EV, shares, float, short interest, 52w)", "assetProfile (business, sector, officers, address)", "summaryProfile (business, sector, address)", "calendarEvents (next earnings and dividend dates)", "earnings (quarterly EPS vs estimate, revenue)", "earningsHistory (EPS surprises)", "earningsTrend (estimate revisions)", "recommendationTrend (analyst counts by month)", "upgradeDowngradeHistory (broker actions)", "incomeStatementHistory (annual)", "incomeStatementHistoryQuarterly", "balanceSheetHistory (annual)", "balanceSheetHistoryQuarterly", "cashflowStatementHistory (annual)", "cashflowStatementHistoryQuarterly", "majorHoldersBreakdown", "institutionOwnership", "fundOwnership", "insiderHolders", "insiderTransactions", "netSharePurchaseActivity", "secFilings", "esgScores", "indexTrend", "industryTrend", "sectorTrend", "fundProfile (ETF/fund)", "topHoldings (ETF/fund)", "fundPerformance (ETF/fund)"]
+            },
+            "default": ["summaryDetail", "financialData", "defaultKeyStatistics", "assetProfile", "calendarEvents", "recommendationTrend", "earnings"],
+            "description": "Fundamentals mode returns one row per symbol and module with Yahoo's fields as plain numbers (raw values; formatted strings dropped). Each module row is charged separately."
+        },
+        "optionsExpirations": {
+            "title": "Expirations per symbol (options)",
+            "type": "integer",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 40,
+            "description": "How many of the nearest expiration dates to fetch when no explicit dates are given. Each expiration is one request with the full call and put chain."
+        },
+        "optionsExpirationDates": {
+            "title": "Specific expiration dates (options)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Exact expirations as YYYY-MM-DD. When set, 'Expirations per symbol' is ignored; dates Yahoo does not list are reported in SUMMARY.",
+            "example": ["2026-12-18"]
+        },
+        "includeGreeks": {
+            "title": "Compute Greeks (options)",
+            "type": "boolean",
+            "default": true,
+            "description": "Yahoo supplies implied volatility but no Greeks. When enabled, delta, gamma, theta (per day), vega (per 1 volatility point) and rho are computed with Black-Scholes from Yahoo's IV, the underlying price and the 13-week T-bill yield (^IRX), dividend yield zero. The rate used is in each row."
+        },
+        "maxResults": {
+            "title": "Maximum rows per symbol or query",
+            "type": "integer",
+            "default": 10000,
+            "minimum": 1,
+            "maximum": 100000,
+            "description": "Caps history bars, option contracts and news items per symbol and matches per search query. In news mode Yahoo returns at most about 50 items per symbol."
+        },
+        "region": {
+            "title": "Region",
+            "type": "string",
+            "editor": "textfield",
+            "default": "US",
+            "description": "Yahoo region parameter for quotes, search and news (US, GB, DE, FR, JP, HK, IN, AU, CA, BR). Affects localisation and which news feed is served, not which symbols exist.",
+            "sectionCaption": "Advanced"
+        },
+        "lang": {
+            "title": "Language",
+            "type": "string",
+            "editor": "textfield",
+            "default": "en-US",
+            "description": "Yahoo lang parameter (en-US, de-DE, fr-FR, ja-JP, ko-KR, zh-Hant-HK). Localises names and news."
+        }
+    },
+    "required": ["mode"]
+}
