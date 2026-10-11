@@ -1,23 +1,23 @@
 {
-    "actorSpecification": 1,
-    "name": "kalshi-weather-edge",
-    "title": "Kalshi Weather Edge",
-    "description": "Open Kalshi daily high, low and rain bracket markets (KXHIGH*, KXLOW*, KXRAIN*) joined to the NWS and Open-Meteo forecasts for each market's settlement station: bracket bounds, close time, bid/ask/mid, order-book depth, forecast high/low/precipitation probability, a stated-sigma normal-model probability per bracket and the difference to the market mid. Descriptive data from public APIs, no login, not advice.",
-    "version": "0.1",
-    "buildTag": "latest",
-    "meta": {
-        "templateId": "js-start"
-    },
-    "input": "./input_schema.json",
-    "dockerfile": "../Dockerfile",
-    "readme": "../README.md",
-    "storages": {
-        "dataset": "./dataset_schema.json"
-    },
-    "defaultRunOptions": {
-        "build": "latest",
-        "timeoutSecs": 1800,
-        "memoryMbytes": 512
-    },
-    "output": "./output_schema.json"
+  "actorSpecification": 1,
+  "name": "kalshi-weather-edge",
+  "title": "Kalshi Weather Edge",
+  "description": "Open Kalshi daily high, low and rain markets with order book, NWS and Open-Meteo forecasts, a stated normal-bracket model probability and the gap to the market mid. Descriptive only. Pay per scored market.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-start"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 1800,
+    "memoryMbytes": 512
+  },
+  "output": "./output_schema.json"
 }

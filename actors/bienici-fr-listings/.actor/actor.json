@@ -1,23 +1,23 @@
 {
-    "actorSpecification": 1,
-    "name": "bienici-fr-listings",
-    "title": "Bien'ici France Listings",
-    "description": "Sale and rental listings from Bien'ici (bienici.com) for any French city, postcode or department: price, surface, rooms, DPE energy class, agency or private flag, coordinates, publication date and price-drop flag. Filter by transaction type, property type, price, surface, rooms and energy class. One request per second, no login.",
-    "version": "0.1",
-    "buildTag": "latest",
-    "meta": {
-        "templateId": "js-start"
-    },
-    "input": "./input_schema.json",
-    "dockerfile": "../Dockerfile",
-    "readme": "../README.md",
-    "storages": {
-        "dataset": "./dataset_schema.json"
-    },
-    "defaultRunOptions": {
-        "build": "latest",
-        "timeoutSecs": 3600,
-        "memoryMbytes": 512
-    },
-    "output": "./output_schema.json"
+  "actorSpecification": 1,
+  "name": "bienici-fr-listings",
+  "title": "Bien'ici France Listings",
+  "description": "French sale and rental listings from Bien'ici's public search feed by city, postcode or department: price, surface, rooms, DPE class, coordinates, publication date, agency flag, price-drop flag. Pay per listing.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-start"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 3600,
+    "memoryMbytes": 512
+  },
+  "output": "./output_schema.json"
 }
