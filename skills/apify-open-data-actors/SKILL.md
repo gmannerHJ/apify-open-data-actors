@@ -60,9 +60,9 @@ Locations accept city names, arrondissements (Paris 11e), postcodes or departmen
 
 **shopify-app-stack-leads**
 ```json
-{"storeUrls": ["allbirds.com", "beardbrand.com"], "fetchProducts": true, "extractEmails": true, "onlyShopify": false, "maxStores": 100}
+{"storeUrls": [{"url": "https://allbirds.com"}, {"url": "https://beardbrand.com"}], "fetchProducts": true, "extractEmails": true, "onlyShopify": false, "maxStores": 100}
 ```
-Or `storeList` with one domain per line. Main output fields: domain, isShopify, storefrontType (liquid, headless, not-shopify, blocked, unavailable, unreachable), myshopifyDomain, themeName, themeSchemaName, themeSchemaVersion, themeStoreId, currency, country, city, productCount, collectionCount, lastProductUpdate, priceMin, priceMax, topVendors, apps (name, category, evidence), appNames, appCount, appsByCategory, plusHints, likelyShopifyPlus, contactEmail, contactEmails, social, error.
+`storeUrls` items are `{"url": ...}` objects; or pass `storeList` with one domain per line. Main output fields: domain, isShopify, storefrontType (liquid, headless, not-shopify, blocked, unavailable, unreachable), myshopifyDomain, themeName, themeSchemaName, themeSchemaVersion, themeStoreId, currency, country, city, productCount, collectionCount, lastProductUpdate, priceMin, priceMax, topVendors, apps (name, category, evidence), appNames, appCount, appsByCategory, plusHints, likelyShopifyPlus, contactEmail, contactEmails, social, error.
 
 **kalshi-weather-edge**
 ```json
