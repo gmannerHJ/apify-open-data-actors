@@ -1,146 +1,230 @@
 {
-    "title": "Bien'ici France Listings input",
-    "type": "object",
-    "schemaVersion": 1,
-    "properties": {
-        "transactionType": {
-            "title": "Transaction",
-            "type": "string",
-            "editor": "select",
-            "enum": ["buy", "rent"],
-            "enumTitles": ["For sale (vente)", "For rent (location)"],
-            "default": "buy",
-            "description": "Sale or rental listings."
-        },
-        "locations": {
-            "title": "Locations",
-            "type": "array",
-            "editor": "stringList",
-            "description": "French city names (Lyon), arrondissements (Paris 11e), postcodes (69003), departments (Rhône) or raw Bien'ici zone ids (-7444). Each is resolved through the site's own location search; the best match is logged. Leave empty to search all of France.",
-            "prefill": ["Lyon"]
-        },
-        "propertyTypes": {
-            "title": "Property types",
-            "type": "array",
-            "editor": "select",
-            "items": {
-                "type": "string",
-                "enum": ["flat", "house", "parkingbox", "terrain", "loft", "shop", "building", "castle", "premises", "office", "townhouse", "programme", "others"],
-                "enumTitles": ["Flat (appartement)", "House (maison)", "Parking / box", "Land (terrain)", "Loft", "Shop (commerce)", "Building (immeuble)", "Castle", "Business premises", "Office", "Townhouse", "New-build programme", "Other"]
-            },
-            "default": ["flat", "house"],
-            "description": "One or more property types."
-        },
-        "minPrice": {
-            "title": "Minimum price (EUR)",
-            "type": "integer",
-            "minimum": 0,
-            "description": "Sale price or monthly rent in euros."
-        },
-        "maxPrice": {
-            "title": "Maximum price (EUR)",
-            "type": "integer",
-            "minimum": 0,
-            "description": "Sale price or monthly rent in euros."
-        },
-        "minSurface": {
-            "title": "Minimum surface (m²)",
-            "type": "integer",
-            "minimum": 0
-        },
-        "maxSurface": {
-            "title": "Maximum surface (m²)",
-            "type": "integer",
-            "minimum": 0
-        },
-        "minRooms": {
-            "title": "Minimum rooms (pièces)",
-            "type": "integer",
-            "minimum": 1
-        },
-        "maxRooms": {
-            "title": "Maximum rooms (pièces)",
-            "type": "integer",
-            "minimum": 1
-        },
-        "minBedrooms": {
-            "title": "Minimum bedrooms",
-            "type": "integer",
-            "minimum": 1
-        },
-        "energyClasses": {
-            "title": "DPE energy classes",
-            "type": "array",
-            "editor": "select",
-            "items": { "type": "string", "enum": ["A", "B", "C", "D", "E", "F", "G"] },
-            "description": "Keep only listings whose DPE energy class is one of these. Leave empty for all classes (including listings without a DPE)."
-        },
-        "newBuild": {
-            "title": "New-build",
-            "type": "string",
-            "editor": "select",
-            "enum": ["any", "only", "exclude"],
-            "enumTitles": ["Any", "Only new-build", "Exclude new-build"],
-            "default": "any"
-        },
-        "publishedSince": {
-            "title": "Published since",
-            "type": "string",
-            "editor": "textfield",
-            "description": "Keep only listings first published at or after this moment: an ISO date (2026-10-01) or a relative period (24h, 7d, 2w, 1m). With the default sort (newest first) the run stops as soon as it reaches older listings, so daily runs are cheap.",
-            "example": "7d"
-        },
-        "sortBy": {
-            "title": "Sort by",
-            "type": "string",
-            "editor": "select",
-            "enum": ["publicationDate", "relevance", "price", "surfaceArea", "pricePerSquareMeter"],
-            "enumTitles": ["Publication date", "Relevance", "Price", "Surface", "Price per m²"],
-            "default": "publicationDate"
-        },
-        "sortOrder": {
-            "title": "Sort order",
-            "type": "string",
-            "editor": "select",
-            "enum": ["desc", "asc"],
-            "enumTitles": ["Descending", "Ascending"],
-            "default": "desc"
-        },
-        "maxResults": {
-            "title": "Maximum listings",
-            "type": "integer",
-            "default": 300,
-            "minimum": 1,
-            "maximum": 5000,
-            "description": "Stop after this many listings. The run cost is bounded by this number."
-        },
-        "includeDescription": {
-            "title": "Include full description text",
-            "type": "boolean",
-            "default": true,
-            "description": "The agent's French description (often 500-2,000 characters). Turn off for smaller rows."
-        },
-        "includePhotos": {
-            "title": "Include photo URLs",
-            "type": "boolean",
-            "default": false,
-            "description": "Adds a photos array with image URLs. The photo count is always included."
-        },
-        "pageSize": {
-            "title": "Page size",
-            "type": "integer",
-            "default": 100,
-            "minimum": 10,
-            "maximum": 200,
-            "description": "Listings per request to bienici.com (the site accepts up to 200). Requests are paced at one per second.",
-            "sectionCaption": "Advanced"
-        },
-        "extraFilters": {
-            "title": "Extra raw filters",
-            "type": "object",
-            "editor": "json",
-            "description": "Additional keys merged into the site's own filters JSON for options not exposed above, for example {\"hasTerrace\": true, \"maxPricePerSquareMeter\": 6000, \"minBedrooms\": 2}. Keys here override the fields above."
-        }
+  "title": "Bien'ici France Listings input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "transactionType": {
+      "title": "Transaction",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "buy",
+        "rent"
+      ],
+      "enumTitles": [
+        "For sale (vente)",
+        "For rent (location)"
+      ],
+      "default": "buy",
+      "description": "Sale or rental listings."
     },
-    "required": []
+    "locations": {
+      "title": "Locations",
+      "type": "array",
+      "editor": "stringList",
+      "description": "French city names (Lyon), arrondissements (Paris 11e), postcodes (69003), departments (Rhône) or raw Bien'ici zone ids (-7444). Each is resolved through the site's own location search; the best match is logged. Leave empty to search all of France.",
+      "prefill": [
+        "Lyon"
+      ]
+    },
+    "propertyTypes": {
+      "title": "Property types",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "flat",
+          "house",
+          "parkingbox",
+          "terrain",
+          "loft",
+          "shop",
+          "building",
+          "castle",
+          "premises",
+          "office",
+          "townhouse",
+          "programme",
+          "others"
+        ],
+        "enumTitles": [
+          "Flat (appartement)",
+          "House (maison)",
+          "Parking / box",
+          "Land (terrain)",
+          "Loft",
+          "Shop (commerce)",
+          "Building (immeuble)",
+          "Castle",
+          "Business premises",
+          "Office",
+          "Townhouse",
+          "New-build programme",
+          "Other"
+        ]
+      },
+      "default": [
+        "flat",
+        "house"
+      ],
+      "description": "One or more property types."
+    },
+    "minPrice": {
+      "title": "Minimum price (EUR)",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sale price or monthly rent in euros."
+    },
+    "maxPrice": {
+      "title": "Maximum price (EUR)",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sale price or monthly rent in euros."
+    },
+    "minSurface": {
+      "title": "Minimum surface (m²)",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Minimum living surface in square metres."
+    },
+    "maxSurface": {
+      "title": "Maximum surface (m²)",
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum living surface in square metres."
+    },
+    "minRooms": {
+      "title": "Minimum rooms (pièces)",
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum number of rooms (pièces, French count including living room)."
+    },
+    "maxRooms": {
+      "title": "Maximum rooms (pièces)",
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum number of rooms."
+    },
+    "minBedrooms": {
+      "title": "Minimum bedrooms",
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum number of bedrooms."
+    },
+    "energyClasses": {
+      "title": "DPE energy classes",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ]
+      },
+      "description": "Keep only listings whose DPE energy class is one of these. Leave empty for all classes (including listings without a DPE)."
+    },
+    "newBuild": {
+      "title": "New-build",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "any",
+        "only",
+        "exclude"
+      ],
+      "enumTitles": [
+        "Any",
+        "Only new-build",
+        "Exclude new-build"
+      ],
+      "default": "any",
+      "description": "Include new-build programmes: any (default), only new builds, or exclude them."
+    },
+    "publishedSince": {
+      "title": "Published since",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Keep only listings first published at or after this moment: an ISO date (2026-10-01) or a relative period (24h, 7d, 2w, 1m). With the default sort (newest first) the run stops as soon as it reaches older listings, so daily runs are cheap.",
+      "example": "7d"
+    },
+    "sortBy": {
+      "title": "Sort by",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "publicationDate",
+        "relevance",
+        "price",
+        "surfaceArea",
+        "pricePerSquareMeter"
+      ],
+      "enumTitles": [
+        "Publication date",
+        "Relevance",
+        "Price",
+        "Surface",
+        "Price per m²"
+      ],
+      "default": "publicationDate",
+      "description": "Sort order of the site search. publicationDate (newest first) lets publishedSince stop the run early."
+    },
+    "sortOrder": {
+      "title": "Sort order",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "desc",
+        "asc"
+      ],
+      "enumTitles": [
+        "Descending",
+        "Ascending"
+      ],
+      "default": "desc",
+      "description": "Descending (default) or ascending for the chosen sort field."
+    },
+    "maxResults": {
+      "title": "Maximum listings",
+      "type": "integer",
+      "default": 300,
+      "minimum": 1,
+      "maximum": 5000,
+      "description": "Stop after this many listings. The run cost is bounded by this number."
+    },
+    "includeDescription": {
+      "title": "Include full description text",
+      "type": "boolean",
+      "default": true,
+      "description": "The agent's French description (often 500-2,000 characters). Turn off for smaller rows."
+    },
+    "includePhotos": {
+      "title": "Include photo URLs",
+      "type": "boolean",
+      "default": false,
+      "description": "Adds a photos array with image URLs. The photo count is always included."
+    },
+    "pageSize": {
+      "title": "Page size",
+      "type": "integer",
+      "default": 100,
+      "minimum": 10,
+      "maximum": 200,
+      "description": "Listings per request to bienici.com (the site accepts up to 200). Requests are paced at one per second.",
+      "sectionCaption": "Advanced"
+    },
+    "extraFilters": {
+      "title": "Extra raw filters",
+      "type": "object",
+      "editor": "json",
+      "description": "Additional keys merged into the site's own filters JSON for options not exposed above, for example {\"hasTerrace\": true, \"maxPricePerSquareMeter\": 6000, \"minBedrooms\": 2}. Keys here override the fields above."
+    }
+  },
+  "required": []
 }

@@ -1,118 +1,156 @@
 {
-    "title": "Kalshi Weather Edge input",
-    "type": "object",
-    "schemaVersion": 1,
-    "properties": {
-        "seriesTickers": {
-            "title": "Series tickers",
-            "type": "array",
-            "editor": "stringList",
-            "description": "Kalshi weather series to scan, e.g. KXHIGHNY, KXLOWTCHI, KXRAIN. A trailing * selects by prefix (KXHIGH* = every daily-high series). Leave empty for all daily temperature and rain series (about 110).",
-            "prefill": ["KXHIGHNY", "KXLOWTNYC", "KXHIGHCHI", "KXRAIN"]
-        },
-        "marketTypes": {
-            "title": "Market types",
-            "type": "array",
-            "editor": "select",
-            "items": { "type": "string", "enum": ["high", "low", "rain"], "enumTitles": ["Daily high temperature", "Daily low temperature", "Daily rain (yes/no)"] },
-            "default": ["high", "low", "rain"]
-        },
-        "cities": {
-            "title": "Cities or stations",
-            "type": "array",
-            "editor": "stringList",
-            "description": "Keep only markets whose settlement station matches one of these: a city name (Chicago), an NWS climate code (CLIMDW) or an ICAO code (KMDW). Leave empty for all.",
-            "example": ["New York City", "Chicago"]
-        },
-        "maxDaysAhead": {
-            "title": "Maximum days ahead",
-            "type": "integer",
-            "default": 7,
-            "minimum": 0,
-            "maximum": 14,
-            "description": "Markets whose target date is further ahead are listed but not scored (NWS forecasts cover 7 days, Open-Meteo 14)."
-        },
-        "maxMarkets": {
-            "title": "Maximum markets",
-            "type": "integer",
-            "default": 500,
-            "minimum": 1,
-            "maximum": 5000,
-            "description": "Stop after this many markets. Only scored markets are charged."
-        },
-        "includeOrderbook": {
-            "title": "Fetch order book",
-            "type": "boolean",
-            "default": true,
-            "description": "One extra request per market for best bid/ask with sizes and total depth on each side. The mid price is then taken from the book instead of the market summary."
-        },
-        "orderbookDepth": {
-            "title": "Order-book depth",
-            "type": "integer",
-            "default": 5,
-            "minimum": 1,
-            "maximum": 100,
-            "description": "Price levels per side to request when fetching the order book."
-        },
-        "forecastSources": {
-            "title": "Forecast sources",
-            "type": "array",
-            "editor": "select",
-            "items": { "type": "string", "enum": ["nws", "open-meteo"], "enumTitles": ["NWS api.weather.gov (US stations)", "Open-Meteo (all stations)"] },
-            "default": ["nws", "open-meteo"],
-            "description": "The model uses the arithmetic mean of the sources that have a value for the target date. Both raw values are always in the row."
-        },
-        "sigmaScale": {
-            "title": "Sigma scale",
-            "type": "number",
-            "default": 1,
-            "minimum": 0.1,
-            "maximum": 10,
-            "description": "Multiplier applied to every station's assumed 1-day forecast standard deviation (2.0 to 4.0 F per station, listed in the README). Use it to make the model more or less confident.",
-            "sectionCaption": "Model assumptions"
-        },
-        "leadTimeGrowth": {
-            "title": "Sigma growth per extra lead day",
-            "type": "number",
-            "default": 0.25,
-            "minimum": 0,
-            "maximum": 2,
-            "description": "sigma = base x sigmaScale x (1 + growth x (leadDays - 1)) for leadDays >= 1; same-day markets use 0.8 x base."
-        },
-        "sigmaOverrides": {
-            "title": "Sigma overrides per station",
-            "type": "object",
-            "editor": "json",
-            "description": "Base sigma in degrees F keyed by station code, e.g. {\"CLINYC\": 2.5, \"CLIDEN\": 4.5}. Overrides replace the table value before scaling."
-        },
-        "sameDayCutoffHour": {
-            "title": "Same-day cutoff hour (local)",
-            "type": "integer",
-            "default": 12,
-            "minimum": 0,
-            "maximum": 24,
-            "description": "Markets for the current local day are scored only before this hour at the station; later in the day the outcome is mostly observed and a forecast-based probability would be misleading. 0 never scores same-day markets, 24 always does. Unscored rows still carry the market data and the observed high/low so far."
-        },
-        "includeObservations": {
-            "title": "Attach observations so far today",
-            "type": "boolean",
-            "default": true,
-            "description": "For US stations with a same-day market, read the station's NWS observations since local midnight and add the running high, low and precipitation (one request per station)."
-        },
-        "minVolume": {
-            "title": "Minimum volume",
-            "type": "number",
-            "default": 0,
-            "minimum": 0,
-            "description": "Skip markets with lifetime volume below this number of contracts.",
-            "sectionCaption": "Filters"
-        },
-        "includeUnscored": {
-            "title": "Include unscored markets",
-            "type": "boolean",
-            "default": true,
-            "description": "Keep rows for markets that cannot be scored (unknown station, no forecast for the date, rain amount thresholds, target date passed). They carry the market data and a note, and are not charged."
-        }
+  "title": "Kalshi Weather Edge input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "seriesTickers": {
+      "title": "Series tickers",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Kalshi weather series to scan, e.g. KXHIGHNY, KXLOWTCHI, KXRAIN. A trailing * selects by prefix (KXHIGH* = every daily-high series). Leave empty for all daily temperature and rain series (about 110).",
+      "prefill": [
+        "KXHIGHNY",
+        "KXLOWTNYC",
+        "KXHIGHCHI",
+        "KXRAIN"
+      ]
     },
-    "required": []
+    "marketTypes": {
+      "title": "Market types",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "high",
+          "low",
+          "rain"
+        ],
+        "enumTitles": [
+          "Daily high temperature",
+          "Daily low temperature",
+          "Daily rain (yes/no)"
+        ]
+      },
+      "default": [
+        "high",
+        "low",
+        "rain"
+      ],
+      "description": "Which daily market kinds to include: high temperature, low temperature, rain (threshold-0 yes/no)."
+    },
+    "cities": {
+      "title": "Cities or stations",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Keep only markets whose settlement station matches one of these: a city name (Chicago), an NWS climate code (CLIMDW) or an ICAO code (KMDW). Leave empty for all.",
+      "example": [
+        "New York City",
+        "Chicago"
+      ]
+    },
+    "maxDaysAhead": {
+      "title": "Maximum days ahead",
+      "type": "integer",
+      "default": 7,
+      "minimum": 0,
+      "maximum": 14,
+      "description": "Markets whose target date is further ahead are listed but not scored (NWS forecasts cover 7 days, Open-Meteo 14)."
+    },
+    "maxMarkets": {
+      "title": "Maximum markets",
+      "type": "integer",
+      "default": 500,
+      "minimum": 1,
+      "maximum": 5000,
+      "description": "Stop after this many markets. Only scored markets are charged."
+    },
+    "includeOrderbook": {
+      "title": "Fetch order book",
+      "type": "boolean",
+      "default": true,
+      "description": "One extra request per market for best bid/ask with sizes and total depth on each side. The mid price is then taken from the book instead of the market summary."
+    },
+    "orderbookDepth": {
+      "title": "Order-book depth",
+      "type": "integer",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Price levels per side to request when fetching the order book."
+    },
+    "forecastSources": {
+      "title": "Forecast sources",
+      "type": "array",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "nws",
+          "open-meteo"
+        ],
+        "enumTitles": [
+          "NWS api.weather.gov (US stations)",
+          "Open-Meteo (all stations)"
+        ]
+      },
+      "default": [
+        "nws",
+        "open-meteo"
+      ],
+      "description": "The model uses the arithmetic mean of the sources that have a value for the target date. Both raw values are always in the row."
+    },
+    "sigmaScale": {
+      "title": "Sigma scale",
+      "type": "number",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 10,
+      "description": "Multiplier applied to every station's assumed 1-day forecast standard deviation (2.0 to 4.0 F per station, listed in the README). Use it to make the model more or less confident.",
+      "sectionCaption": "Model assumptions"
+    },
+    "leadTimeGrowth": {
+      "title": "Sigma growth per extra lead day",
+      "type": "number",
+      "default": 0.25,
+      "minimum": 0,
+      "maximum": 2,
+      "description": "sigma = base x sigmaScale x (1 + growth x (leadDays - 1)) for leadDays >= 1; same-day markets use 0.8 x base."
+    },
+    "sigmaOverrides": {
+      "title": "Sigma overrides per station",
+      "type": "object",
+      "editor": "json",
+      "description": "Base sigma in degrees F keyed by station code, e.g. {\"CLINYC\": 2.5, \"CLIDEN\": 4.5}. Overrides replace the table value before scaling."
+    },
+    "sameDayCutoffHour": {
+      "title": "Same-day cutoff hour (local)",
+      "type": "integer",
+      "default": 12,
+      "minimum": 0,
+      "maximum": 24,
+      "description": "Markets for the current local day are scored only before this hour at the station; later in the day the outcome is mostly observed and a forecast-based probability would be misleading. 0 never scores same-day markets, 24 always does. Unscored rows still carry the market data and the observed high/low so far."
+    },
+    "includeObservations": {
+      "title": "Attach observations so far today",
+      "type": "boolean",
+      "default": true,
+      "description": "For US stations with a same-day market, read the station's NWS observations since local midnight and add the running high, low and precipitation (one request per station)."
+    },
+    "minVolume": {
+      "title": "Minimum volume",
+      "type": "number",
+      "default": 0,
+      "minimum": 0,
+      "description": "Skip markets with lifetime volume below this number of contracts.",
+      "sectionCaption": "Filters"
+    },
+    "includeUnscored": {
+      "title": "Include unscored markets",
+      "type": "boolean",
+      "default": true,
+      "description": "Keep rows for markets that cannot be scored (unknown station, no forecast for the date, rain amount thresholds, target date passed). They carry the market data and a note, and are not charged."
+    }
+  },
+  "required": []
 }
