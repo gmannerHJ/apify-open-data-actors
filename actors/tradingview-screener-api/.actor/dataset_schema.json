@@ -1,0 +1,88 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "symbol": { "type": "string" },
+            "exchange": { "type": ["string", "null"] },
+            "name": { "type": ["string", "null"] },
+            "market": { "type": "string" },
+            "close": { "type": ["number", "null"] },
+            "change": { "type": ["number", "null"] },
+            "change_abs": { "type": ["number", "null"] },
+            "volume": { "type": ["number", "null"] },
+            "market_cap_basic": { "type": ["number", "null"] },
+            "price_earnings_ttm": { "type": ["number", "null"] },
+            "earnings_per_share_basic_ttm": { "type": ["number", "null"] },
+            "dividends_yield": { "type": ["number", "null"] },
+            "sector": { "type": ["string", "null"] },
+            "industry": { "type": ["string", "null"] },
+            "Recommend.All": { "type": ["number", "null"] },
+            "RSI": { "type": ["number", "null"] },
+            "SMA50": { "type": ["number", "null"] },
+            "SMA200": { "type": ["number", "null"] },
+            "Perf.W": { "type": ["number", "null"] },
+            "Perf.1M": { "type": ["number", "null"] },
+            "Perf.YTD": { "type": ["number", "null"] },
+            "Volatility.D": { "type": ["number", "null"] },
+            "relative_volume_10d_calc": { "type": ["number", "null"] },
+            "type": { "type": ["string", "null"] },
+            "description": { "type": ["string", "null"] },
+            "currency": { "type": ["string", "null"] },
+            "average_volume_10d_calc": { "type": ["number", "null"] },
+            "float_shares_outstanding": { "type": ["number", "null"] },
+            "beta_1_year": { "type": ["number", "null"] },
+            "field": { "type": "string" },
+            "values": { "type": ["array", "null"] },
+            "valueCount": { "type": ["integer", "null"] },
+            "sampleSymbol": { "type": ["string", "null"] },
+            "verified": { "type": ["boolean", "null"] },
+            "sampleValue": {},
+            "source": { "type": "string" },
+            "asOf": { "type": "string" }
+        },
+        "required": ["market", "asOf"]
+    },
+    "views": {
+        "overview": {
+            "title": "Symbols",
+            "transformation": {
+                "fields": ["symbol", "name", "close", "change", "volume", "market_cap_basic", "RSI", "Recommend.All", "sector", "exchange", "currency", "asOf"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "symbol": { "label": "Symbol", "format": "text" },
+                    "name": { "label": "Name", "format": "text" },
+                    "close": { "label": "Close", "format": "number" },
+                    "change": { "label": "Change %", "format": "number" },
+                    "volume": { "label": "Volume", "format": "number" },
+                    "market_cap_basic": { "label": "Market cap", "format": "number" },
+                    "RSI": { "label": "RSI", "format": "number" },
+                    "Recommend.All": { "label": "Rating", "format": "number" },
+                    "sector": { "label": "Sector", "format": "text" },
+                    "exchange": { "label": "Exchange", "format": "text" },
+                    "currency": { "label": "Currency", "format": "text" },
+                    "asOf": { "label": "As of", "format": "date" }
+                }
+            }
+        },
+        "fields": {
+            "title": "Fields",
+            "transformation": { "fields": ["market", "field", "type", "valueCount", "verified", "sampleValue", "sampleSymbol", "source"] },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "market": { "label": "Market", "format": "text" },
+                    "field": { "label": "Field", "format": "text" },
+                    "type": { "label": "Type", "format": "text" },
+                    "valueCount": { "label": "Enumerated values", "format": "number" },
+                    "verified": { "label": "Returned a value", "format": "boolean" },
+                    "sampleValue": { "label": "Sample", "format": "text" },
+                    "sampleSymbol": { "label": "Sample symbol", "format": "text" },
+                    "source": { "label": "Source", "format": "text" }
+                }
+            }
+        }
+    }
+}

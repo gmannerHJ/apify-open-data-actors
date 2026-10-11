@@ -1,6 +1,6 @@
 # Open-data Actors for Apify
 
-Nine small, documented Actors that turn open data and public pages into clean datasets, priced per result on the [Apify Store](https://apify.com/gmanner). Source for each Actor is in `actors/`; a ready-made agent skill that calls them is in `skills/`.
+Ten small, documented Actors that turn open data and public pages into clean datasets, priced per result on the [Apify Store](https://apify.com/gmanner). Source for each Actor is in `actors/`; a ready-made agent skill that calls them is in `skills/`.
 
 | Actor | What you get | Store |
 |---|---|---|
@@ -13,6 +13,7 @@ Nine small, documented Actors that turn open data and public pages into clean da
 | Google News Feed | Google News by search query, topic or feed URL in any language and country: publisher, decoded article URL, time, optional article text; dedupe; changed-since filter | https://apify.com/gmanner/google-news-feed |
 | Yahoo Finance Data | Quotes, OHLCV history with dividends and splits, fundamentals modules, option chains with Greeks, symbol search and news, one row per record | https://apify.com/gmanner/yahoo-finance-data |
 | ESPN Sports Data | Scores, schedules, standings, game summaries with box scores, rosters, injuries, news, rankings and betting lines for NFL, NBA, MLB, NHL, college, soccer, tennis, golf, UFC, F1, cricket from ESPN's public JSON, one row shape for every sport | https://apify.com/gmanner/espn-sports-data |
+| TradingView Screener API | Stock, crypto, forex and futures screens across 77 markets from TradingView's public scanner: any column, any filter, presets (large-cap gainers, oversold RSI, high dividend, 52-week high, crypto top volume), ticker snapshots, and a field catalog per market | https://apify.com/gmanner/tradingview-screener-api |
 
 Design rules: official APIs, public datasets or public pages only; no logins, no personal data; schema-validated output; pay only for returned results.
 

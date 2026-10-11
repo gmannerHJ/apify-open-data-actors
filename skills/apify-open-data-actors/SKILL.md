@@ -1,11 +1,11 @@
 ---
 name: apify-open-data-actors
-description: Get local business leads (Overture Maps), full sitemap URL lists with lastmod and status, Google Play app intelligence, French real-estate listings (Bien'ici), Shopify storefront tech stacks and contacts, and Kalshi weather-market odds versus forecasts plus Google News articles and Yahoo Finance quotes, history, fundamentals and options, and ESPN sports scores, schedules, standings and odds, through nine pay-per-result Apify Actors. Use when a task needs businesses in an area, all URLs of a website, app-store data, French property listings, Shopify store profiling or weather-market data, and the user has an Apify token (APIFY_TOKEN). Each run costs fractions of a cent per result; quote the price before running.
+description: Get local business leads (Overture Maps), full sitemap URL lists with lastmod and status, Google Play app intelligence, French real-estate listings (Bien'ici), Shopify storefront tech stacks and contacts, and Kalshi weather-market odds versus forecasts plus Google News articles and Yahoo Finance quotes, history, fundamentals and options, and ESPN sports scores, schedules, standings and odds, and TradingView stock/crypto screens, through ten pay-per-result Apify Actors. Use when a task needs businesses in an area, all URLs of a website, app-store data, French property listings, Shopify store profiling or weather-market data, and the user has an Apify token (APIFY_TOKEN). Each run costs fractions of a cent per result; quote the price before running.
 ---
 
 # Apify open-data Actors
 
-Nine Actors on the Apify Store, each returning a clean dataset and charging per result. You need `APIFY_TOKEN` (free Apify account; the free plan includes $5 of monthly usage).
+Ten Actors on the Apify Store, each returning a clean dataset and charging per result. You need `APIFY_TOKEN` (free Apify account; the free plan includes $5 of monthly usage).
 
 | Need | Actor id | Price (USD) |
 |---|---|---|
@@ -18,6 +18,7 @@ Nine Actors on the Apify Store, each returning a clean dataset and charging per 
 | Google News articles by query/topic/feed URL with decoded publisher URLs, optional article text | `gmanner~google-news-feed` | 0.002 per run + 0.001 per article (+0.004 per article text) |
 | Yahoo Finance quotes, history, fundamentals, options with Greeks, search, news | `gmanner~yahoo-finance-data` | 0.002 per run + 0.0005 per quote, 0.005 per 100 history bars, 0.002 per fundamentals module, 0.0003 per option row, 0.001 per news row |
 | Sports scores, schedules, standings, box scores, rosters, injuries, news, rankings, betting lines (ESPN) | `gmanner~espn-sports-data` | 0.005 per run + 0.002 per event row, 0.01 per game summary, 0.0005 per standings row, 0.001 per news row, 0.003 per odds row |
+| Stock/crypto/forex/futures screener across 77 markets, any column and filter, presets, ticker snapshots (TradingView scanner) | `gmanner~tradingview-screener-api` | 0.002 per run + 0.0004 per screener row, 0.001 per snapshot row |
 
 ## How to run (any Actor)
 
@@ -100,6 +101,15 @@ Rows carry recordType, symbol, asOf, currency, exchange plus the mode's fields (
 {"mode": "schedule", "leagues": ["nba"], "teams": ["LAL"]}
 ```
 Modes: scoreboard, schedule, standings, game, teams, roster, injuries, news, odds, rankings. League codes: nfl, nba, wnba, mlb, nhl, ncaaf, ncaam, ncaaw, epl, laliga, bundesliga, seriea, ligue1, mls, ucl, uel, world-cup, soccer-all, atp, wta, pga, lpga, ufc, f1, nascar, indycar, ipl, or any ESPN sport/league path. Dates: today, yesterday, tomorrow, a day, a span (up to 45 days), a month or a season year; times default to America/New_York. Rows share one shape: league, eventId, date (UTC), status, home/away team ids, names, scores, records, venue, broadcasts, odds (spread, total, moneylines, opening line), leaders, url.
+
+**tradingview-screener-api**
+```json
+{"market": "america", "preset": "large-cap-gainers", "maxResults": 50}
+{"market": "crypto", "filters": [{"left": "exchange", "operation": "equal", "right": "BINANCE"}], "columns": ["name", "close", "volume", "change"], "sort": {"field": "volume", "order": "desc"}}
+{"mode": "snapshot", "symbols": ["NASDAQ:AAPL", "KRX:005930"]}
+{"mode": "fields", "market": "america"}
+```
+Markets: america, global, crypto, coin, forex, cfd, bond, futures and country markets (korea, japan, germany, uk, india, brazil, ...). Rows: symbol, exchange, name, market, asOf plus every requested column under the scanner's own names. Unknown columns come back null and are listed in SUMMARY.notes; wrong operators or value types fail with the scanner's message and no charge.
 
 ## Limits
 - Overture data is a monthly release (no live hours or reviews).

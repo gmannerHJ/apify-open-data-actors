@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "tradingview-screener-api",
+    "title": "TradingView Screener API",
+    "description": "TradingView screener data from the public scanner endpoint: stocks in 70 country markets, crypto pairs and coins, forex, bonds and futures. Any columns, any filters, ready presets, exact-ticker snapshots and a per-market field catalog. One request per second, no login.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "js-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 1800,
+        "memoryMbytes": 512
+    },
+    "output": "./output_schema.json"
+}

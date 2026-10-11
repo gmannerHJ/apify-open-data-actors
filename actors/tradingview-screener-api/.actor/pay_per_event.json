@@ -1,0 +1,17 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run. Fields mode (column catalog) is covered by this fee alone.",
+        "eventPriceUsd": 0.002
+    },
+    "screener-row": {
+        "eventTitle": "Screener row",
+        "eventDescription": "One symbol returned by a screener run (filters, preset and sort over a market) with all requested columns.",
+        "eventPriceUsd": 0.0004
+    },
+    "snapshot-row": {
+        "eventTitle": "Snapshot row",
+        "eventDescription": "One exact ticker returned in snapshot mode with all requested columns.",
+        "eventPriceUsd": 0.001
+    }
+}

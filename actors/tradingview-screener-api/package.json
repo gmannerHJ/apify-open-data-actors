@@ -1,0 +1,21 @@
+{
+  "name": "tradingview-screener-api",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "TradingView stock, crypto, forex, bond and futures screener data from the public scanner endpoint: any columns, any filters, presets, symbol snapshots and a field catalog per market. Descriptive data only.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

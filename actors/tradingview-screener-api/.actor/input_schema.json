@@ -1,0 +1,85 @@
+{
+    "title": "TradingView Screener API input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "editor": "select",
+            "enum": ["screener", "snapshot", "fields"],
+            "enumTitles": ["Screener (filters + sort, paged)", "Snapshot (exact tickers)", "Fields (column catalog for a market)"],
+            "default": "screener",
+            "description": "Screener runs filters and a sort over a whole market and pages through the result. Snapshot returns the requested columns for exact tickers (NASDAQ:AAPL). Fields lists the column names the scanner knows for a market."
+        },
+        "market": {
+            "title": "Market",
+            "type": "string",
+            "editor": "select",
+            "enum": ["america", "canada", "mexico", "brazil", "argentina", "chile", "colombia", "peru", "venezuela", "uk", "germany", "france", "spain", "italy", "netherlands", "belgium", "switzerland", "austria", "sweden", "norway", "denmark", "finland", "iceland", "ireland", "luxembourg", "portugal", "greece", "cyprus", "poland", "czech", "hungary", "slovakia", "slovenia", "croatia", "serbia", "romania", "estonia", "latvia", "lithuania", "russia", "turkey", "israel", "egypt", "ksa", "uae", "qatar", "bahrain", "kuwait", "nigeria", "kenya", "rsa", "morocco", "tunisia", "india", "pakistan", "bangladesh", "srilanka", "china", "hongkong", "taiwan", "japan", "korea", "singapore", "malaysia", "thailand", "indonesia", "vietnam", "philippines", "australia", "newzealand", "global", "crypto", "coin", "forex", "cfd", "bond", "futures"],
+            "enumTitles": ["United States (NASDAQ, NYSE, AMEX, OTC)", "Canada", "Mexico", "Brazil", "Argentina", "Chile", "Colombia", "Peru", "Venezuela", "United Kingdom", "Germany", "France", "Spain", "Italy", "Netherlands", "Belgium", "Switzerland", "Austria", "Sweden", "Norway", "Denmark", "Finland", "Iceland", "Ireland", "Luxembourg", "Portugal", "Greece", "Cyprus", "Poland", "Czech Republic", "Hungary", "Slovakia", "Slovenia", "Croatia", "Serbia", "Romania", "Estonia", "Latvia", "Lithuania", "Russia", "Turkey", "Israel", "Egypt", "Saudi Arabia (ksa)", "United Arab Emirates (uae)", "Qatar", "Bahrain", "Kuwait", "Nigeria", "Kenya", "South Africa (rsa)", "Morocco", "Tunisia", "India", "Pakistan", "Bangladesh", "Sri Lanka", "China", "Hong Kong", "Taiwan", "Japan", "South Korea (korea)", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Philippines", "Australia", "New Zealand", "Global (all stock markets)", "Crypto pairs (all exchanges)", "Crypto coins (aggregated, CRYPTO:xxxUSD)", "Forex", "CFD", "Bonds", "Futures"],
+            "description": "Scanner market to query (the {market} in scanner.tradingview.com/{market}/scan). Defaults to america, or coin for the crypto-top-volume preset. Snapshot mode always uses global so tickers from any exchange can be mixed."
+        },
+        "columns": {
+            "title": "Columns",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Scanner field names to return, exactly as the scanner names them (close, market_cap_basic, Recommend.All, Perf.YTD ...). Unknown names come back as null. Leave empty for the default set of 27 columns; run mode 'fields' to list all names for a market.",
+            "prefill": ["name", "close", "change", "change_abs", "volume", "market_cap_basic", "price_earnings_ttm", "earnings_per_share_basic_ttm", "dividends_yield", "sector", "industry", "Recommend.All", "RSI", "SMA50", "SMA200", "Perf.W", "Perf.1M", "Perf.YTD", "Volatility.D", "relative_volume_10d_calc", "exchange", "type", "description", "currency", "average_volume_10d_calc", "float_shares_outstanding", "beta_1_year"]
+        },
+        "preset": {
+            "title": "Preset",
+            "type": "string",
+            "editor": "select",
+            "enum": ["none", "large-cap-gainers", "large-cap-losers", "oversold-rsi", "high-dividend", "52w-high", "most-active", "crypto-top-volume"],
+            "enumTitles": ["None", "Large-cap gainers (stock markets)", "Large-cap losers (stock markets)", "Oversold RSI < 30 (stock markets)", "High dividend yield > 4% (stock markets)", "At 52-week high (stock markets)", "Most active by traded value (stock markets)", "Crypto coins by 24h volume (market coin)"],
+            "default": "none",
+            "description": "Ready-made filter and sort definitions, listed in the README. Preset filters are combined with your own filters; the preset's key columns are added to the output; your sortBy overrides the preset sort."
+        },
+        "filters": {
+            "title": "Filters",
+            "type": "array",
+            "editor": "json",
+            "description": "Scanner filter triples: [{\"left\": \"market_cap_basic\", \"operation\": \"greater\", \"right\": 1000000000}, {\"left\": \"exchange\", \"operation\": \"in_range\", \"right\": [\"NASDAQ\", \"NYSE\"]}]. Operations: equal, nequal, greater, egreater, less, eless, in_range, not_in_range, match, nmatch, has, has_none_of, empty, nempty, crosses, crosses_above, crosses_below, above%, below%, in_range%, not_in_range%. A field name as right compares two columns (close egreater SMA200). All filters are ANDed.",
+            "prefill": []
+        },
+        "filter2": {
+            "title": "Advanced filter (filter2)",
+            "type": "object",
+            "editor": "json",
+            "description": "Optional scanner filter2 object for OR groups, passed through unchanged: {\"operator\": \"or\", \"operands\": [{\"expression\": {\"left\": \"RSI\", \"operation\": \"less\", \"right\": 30}}, {\"expression\": {\"left\": \"RSI\", \"operation\": \"greater\", \"right\": 70}}]}."
+        },
+        "symbols": {
+            "title": "Symbols (snapshot mode)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Exact tickers as EXCHANGE:TICKER for snapshot mode, any mix of exchanges: NASDAQ:AAPL, KRX:005930, BINANCE:BTCUSDT, FX:EURUSD, CRYPTO:BTCUSD. Unknown tickers are listed under missingSymbols in the SUMMARY record.",
+            "example": ["NASDAQ:AAPL", "NASDAQ:MSFT", "NYSE:IBM", "KRX:005930", "BINANCE:BTCUSDT"]
+        },
+        "sortBy": {
+            "title": "Sort by",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Scanner field to sort by. Default: the preset's sort, otherwise market_cap_basic for stock markets and volume for the others.",
+            "example": "market_cap_basic"
+        },
+        "sortOrder": {
+            "title": "Sort order",
+            "type": "string",
+            "editor": "select",
+            "enum": ["auto", "desc", "asc"],
+            "enumTitles": ["Automatic (preset direction, otherwise descending)", "Descending", "Ascending"],
+            "default": "auto",
+            "description": "Sort direction. Automatic uses the preset's direction (ascending RSI for oversold-rsi, for example) and descending otherwise."
+        },
+        "maxResults": {
+            "title": "Maximum results",
+            "type": "integer",
+            "default": 500,
+            "minimum": 1,
+            "maximum": 20000,
+            "description": "Rows to return in screener mode (paged 500 per request, one request per second) or symbols to look up in snapshot mode. Ignored in fields mode, which is not charged per row."
+        }
+    },
+    "required": []
+}

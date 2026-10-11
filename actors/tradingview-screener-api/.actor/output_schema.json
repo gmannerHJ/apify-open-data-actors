@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "TradingView Screener API output",
+    "description": "One row per symbol with the requested scanner columns under their native names (screener and snapshot modes), or one row per available column name (fields mode).",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Rows",
+            "description": "One row per symbol with the requested scanner columns under their native names (screener and snapshot modes), or one row per available column name (fields mode).",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
