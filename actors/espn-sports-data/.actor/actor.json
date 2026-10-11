@@ -1,0 +1,23 @@
+{
+  "actorSpecification": 1,
+  "name": "espn-sports-data",
+  "title": "ESPN Sports Data",
+  "description": "Scores, schedules, standings, box scores, play-by-play, rosters, injuries, news, rankings and betting lines from ESPN's public JSON endpoints: NFL, NBA, WNBA, MLB, NHL, college football and basketball, 200+ soccer leagues, tennis, golf, UFC, F1, cricket. No login. Pay per row.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "js-start"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "defaultRunOptions": {
+    "build": "latest",
+    "timeoutSecs": 3600,
+    "memoryMbytes": 1024
+  },
+  "output": "./output_schema.json"
+}

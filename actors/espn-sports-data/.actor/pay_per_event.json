@@ -1,0 +1,32 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run.",
+        "eventPriceUsd": 0.005
+    },
+    "event-row": {
+        "eventTitle": "Event, team, player or injury row",
+        "eventDescription": "One normalized row from scoreboard or schedule mode (a game, match, fight, race session or tournament), from teams mode (one team), roster mode (one player) or injuries mode (one injury report).",
+        "eventPriceUsd": 0.002
+    },
+    "game-summary": {
+        "eventTitle": "Game summary",
+        "eventDescription": "One full event summary in game mode: header, team and player box score, leaders, scoring plays, odds, win probability, lineups, officials, attendance and optional play-by-play; for UFC a whole card, for golf the full leaderboard, for tennis and F1 every match or session of the event.",
+        "eventPriceUsd": 0.01
+    },
+    "standings-row": {
+        "eventTitle": "Standings or rankings row",
+        "eventDescription": "One team or driver in a standings table, or one entry in a poll or ranking (AP and Coaches polls, ATP and WTA rankings, UFC rankings).",
+        "eventPriceUsd": 0.0005
+    },
+    "news-row": {
+        "eventTitle": "News article",
+        "eventDescription": "One headline with description, byline, publish time, image, tagged teams and athletes, and link.",
+        "eventPriceUsd": 0.001
+    },
+    "odds-row": {
+        "eventTitle": "Odds row",
+        "eventDescription": "One event x sportsbook line in odds mode: spread, total, moneylines, draw line, open and current values, favorite.",
+        "eventPriceUsd": 0.003
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "ESPN Sports Data output",
+    "description": "One row per game, match, standing, player, injury, article, odds line or ranking entry, with a recordType field and stable keys across leagues.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Rows",
+            "description": "One row per game, match, standing, player, injury, article, odds line or ranking entry, with a recordType field and stable keys across leagues.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

@@ -1,0 +1,139 @@
+{
+    "title": "ESPN Sports Data input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "mode": {
+            "title": "Mode",
+            "type": "string",
+            "editor": "select",
+            "enum": ["scoreboard", "schedule", "standings", "game", "teams", "roster", "injuries", "news", "odds", "rankings"],
+            "enumTitles": [
+                "Scoreboard (scores and status for dates)",
+                "Schedule (team season schedule, or league schedule for a date span)",
+                "Standings (league tables by conference and division)",
+                "Game (full summary per event id: box score, leaders, odds, win probability, plays)",
+                "Teams (team directory per league)",
+                "Roster (players of the given teams)",
+                "Injuries (current injury reports per league)",
+                "News (latest headlines per league)",
+                "Odds (sportsbook lines for events on the dates)",
+                "Rankings (polls and rankings: AP, Coaches, ATP, WTA, UFC)"
+            ],
+            "default": "scoreboard",
+            "description": "What to fetch. Every mode takes a list of leagues; schedule and roster use 'teams', game uses 'eventIds', scoreboard and odds use 'dates'."
+        },
+        "leagues": {
+            "title": "Leagues",
+            "type": "array",
+            "editor": "stringList",
+            "description": "League codes, one per entry. Short codes: nfl, nba, wnba, mlb, nhl, ncaaf, ncaam, ncaaw, epl, laliga, bundesliga, seriea, ligue1, mls, ucl, uel, world-cup, soccer-all, atp, wta, pga, lpga, ufc, f1. Any other ESPN league as sport/league, e.g. soccer/ned.1, soccer/bra.1, golf/eur, racing/nascar-premier, cricket/8048. The README lists the codes.",
+            "prefill": ["nba", "nfl"]
+        },
+        "dates": {
+            "title": "Dates",
+            "type": "string",
+            "editor": "textfield",
+            "default": "today",
+            "description": "For scoreboard, odds and league schedule. today, yesterday, tomorrow, a day (2026-10-11 or 20261011), a span (2026-10-01..2026-10-07 or 20261001-20261007, up to 366 days), a month (202610) or a year (2026). Days are resolved in 'timezone'. A span is fetched one day at a time; months and years are single requests and heavy for golf and tennis."
+        },
+        "timezone": {
+            "title": "Time zone",
+            "type": "string",
+            "editor": "textfield",
+            "default": "America/New_York",
+            "description": "IANA zone used to resolve today/yesterday/tomorrow and to fill the dateLocal field. ESPN's own game days follow US Eastern time, so the default keeps 'today' aligned with espn.com."
+        },
+        "teams": {
+            "title": "Teams",
+            "type": "array",
+            "editor": "stringList",
+            "description": "ESPN team ids or abbreviations (LAL, KC, ARS, 13). Required by roster mode; schedule mode returns these teams' season schedules; scoreboard and odds modes keep only events involving them. Prefix with a league to scope one entry: nba/LAL.",
+            "example": ["LAL", "BOS"]
+        },
+        "eventIds": {
+            "title": "Event ids",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Game mode. ESPN event ids as found in scoreboard rows or ESPN URLs, prefixed with the league when more than one league is given: nba/401902645, nfl/401772510, eng.1/401879268, ufc/600061541, pga/401850916, atp/959-2026. A full ESPN gamecast URL also works.",
+            "example": ["nba/401902645"]
+        },
+        "season": {
+            "title": "Season",
+            "type": "integer",
+            "minimum": 1990,
+            "maximum": 2100,
+            "description": "Season year for standings, schedule and rankings (ESPN convention: the 2025-26 NBA season is 2026, the 2025 NFL season is 2025). Empty = current season."
+        },
+        "seasonType": {
+            "title": "Season type",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "description": "1 preseason, 2 regular season, 3 postseason, 4 off-season, for standings and schedule. Empty = ESPN default (regular season or the current phase)."
+        },
+        "groups": {
+            "title": "College group or conference id",
+            "type": "string",
+            "editor": "textfield",
+            "description": "College leagues only. 80 = FBS (default for college football), 81 = FCS, 50 = Division I (default for college basketball), or a conference id such as 8 (SEC football). Applies to scoreboard, standings and teams."
+        },
+        "statusFilter": {
+            "title": "Game status",
+            "type": "array",
+            "editor": "select",
+            "items": {
+                "type": "string",
+                "enum": ["pre", "in", "post"],
+                "enumTitles": ["Scheduled (pre)", "Live (in)", "Final (post)"]
+            },
+            "default": ["pre", "in", "post"],
+            "description": "Scoreboard, schedule and odds: keep events in these states only. Use ['in'] for a live feed, ['pre'] for upcoming games with lines."
+        },
+        "includeBoxScore": {
+            "title": "Include box score",
+            "type": "boolean",
+            "default": true,
+            "description": "Game mode: team statistics and per-player statistics for each side (lineups, formation and substitutions for soccer).",
+            "sectionCaption": "Game mode"
+        },
+        "includePlayByPlay": {
+            "title": "Include play-by-play",
+            "type": "boolean",
+            "default": false,
+            "description": "Game mode: every play with period, clock, score, text and team (drives for football, key events and commentary for soccer). Large: a basketball game has 450-550 plays."
+        },
+        "maxPlays": {
+            "title": "Maximum plays",
+            "type": "integer",
+            "default": 1000,
+            "minimum": 1,
+            "maximum": 5000,
+            "description": "Game mode with play-by-play: keep at most this many plays per game, from the start."
+        },
+        "allOddsProviders": {
+            "title": "All sportsbooks",
+            "type": "boolean",
+            "default": false,
+            "description": "Odds mode: one extra request per event to ESPN's odds feed for every sportsbook ESPN lists (DraftKings, Bet365, live lines) with open, close and current values. Off = the featured line embedded in the scoreboard, one row per event, no extra requests.",
+            "sectionCaption": "Odds mode"
+        },
+        "includeTeamDetails": {
+            "title": "Team details",
+            "type": "boolean",
+            "default": false,
+            "description": "Teams mode: one extra request per team for the home venue, current record, standing summary and next event.",
+            "sectionCaption": "Teams mode"
+        },
+        "maxResults": {
+            "title": "Maximum rows",
+            "type": "integer",
+            "default": 1000,
+            "minimum": 1,
+            "maximum": 20000,
+            "description": "Stop after this many rows in total. In game mode it caps the number of event ids processed.",
+            "sectionCaption": "Limits"
+        }
+    },
+    "required": ["mode", "leagues"]
+}

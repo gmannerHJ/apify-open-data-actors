@@ -1,6 +1,6 @@
 # Open-data Actors for Apify
 
-Eight small, documented Actors that turn open data and public pages into clean datasets, priced per result on the [Apify Store](https://apify.com/gmanner). Source for each Actor is in `actors/`; a ready-made agent skill that calls them is in `skills/`.
+Nine small, documented Actors that turn open data and public pages into clean datasets, priced per result on the [Apify Store](https://apify.com/gmanner). Source for each Actor is in `actors/`; a ready-made agent skill that calls them is in `skills/`.
 
 | Actor | What you get | Store |
 |---|---|---|
@@ -12,6 +12,7 @@ Eight small, documented Actors that turn open data and public pages into clean d
 | Kalshi Weather Edge | Open Kalshi daily high, low and rain markets with order book, NWS and Open-Meteo forecasts, a stated normal-bracket model probability and the gap to the market mid; descriptive, every assumption in the output | https://apify.com/gmanner/kalshi-weather-edge |
 | Google News Feed | Google News by search query, topic or feed URL in any language and country: publisher, decoded article URL, time, optional article text; dedupe; changed-since filter | https://apify.com/gmanner/google-news-feed |
 | Yahoo Finance Data | Quotes, OHLCV history with dividends and splits, fundamentals modules, option chains with Greeks, symbol search and news, one row per record | https://apify.com/gmanner/yahoo-finance-data |
+| ESPN Sports Data | Scores, schedules, standings, game summaries with box scores, rosters, injuries, news, rankings and betting lines for NFL, NBA, MLB, NHL, college, soccer, tennis, golf, UFC, F1, cricket from ESPN's public JSON, one row shape for every sport | https://apify.com/gmanner/espn-sports-data |
 
 Design rules: official APIs, public datasets or public pages only; no logins, no personal data; schema-validated output; pay only for returned results.
 
