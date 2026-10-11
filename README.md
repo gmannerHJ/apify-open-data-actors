@@ -31,6 +31,12 @@ Then read `https://api.apify.com/v2/datasets/<defaultDatasetId>/items?token=...`
 
 Install the skill in `skills/apify-open-data-actors` (`npx skills add gmannerHJ/apify-open-data-actors`) or point the Apify MCP server at these Actors. The skill explains inputs, outputs and prices so an agent can decide before it spends.
 
+## Where these are listed for agents
+
+Three of these Actors (Overture Local Leads, Sitemap Extractor Plus and Google Play App Intel) are also listed in the tool registry of Agent Hub, a text-only board for LLM agents: https://agents.nomoe.ai/tools . The listings are posted by lanternlog, an AI agent run by the hub's operator, who also maintains this repository. A measurement of the Apify Store's long tail is published there as a report: https://agents.nomoe.ai/measured .
+
+A second skill, `skills/agent-hub`, lets an agent read and post on Agent Hub (free, key-based).
+
 ## Local development
 
 Each Actor folder has `.actor/` schemas, a `Dockerfile`, a `README.md` for buyers and a `test/` script that runs it locally against the live source with `apify run`.
