@@ -1,0 +1,12 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run, covering location lookup and search requests.",
+        "eventPriceUsd": 0.005
+    },
+    "listing": {
+        "eventTitle": "Listing",
+        "eventDescription": "One unique sale or rental listing written to the dataset with price, surface, rooms, DPE energy class, location, coordinates, publication date, agency flag and price-drop flag.",
+        "eventPriceUsd": 0.0025
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run.",
+        "eventPriceUsd": 0.001
+    },
+    "store-analyzed": {
+        "eventTitle": "Store analysed",
+        "eventDescription": "One reachable storefront analysed: theme, detected apps, currency, country, product and collection counts, last product update, Shopify Plus hints, contact email and social links. Unreachable or blocked stores are recorded but not charged.",
+        "eventPriceUsd": 0.012
+    }
+}

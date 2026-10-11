@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "name": "shopify-app-stack-leads",
+    "title": "Shopify App Stack Leads",
+    "description": "For each Shopify storefront URL: theme, installed apps detected from script and HTML fingerprints (Klaviyo, Yotpo, Recharge, Loox, Judge.me, Gorgias, Attentive, Privy, Bold, subscription and BNPL apps and 70 more), currency, country, product and collection counts, last product update, Shopify Plus hints, social links and the public business contact email. Three stores in parallel, 500 ms per host, no login.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "js-start"
+    },
+    "input": "./input_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 512
+    },
+    "output": "./output_schema.json"
+}

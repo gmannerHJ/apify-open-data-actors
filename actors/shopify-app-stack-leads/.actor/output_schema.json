@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Shopify App Stack Leads output",
+    "description": "One row per storefront: theme, detected apps with evidence, currency, country, product and collection counts, last product update, Shopify Plus hints, business contact email and social links.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Stores",
+            "description": "One row per storefront: theme, detected apps with evidence, currency, country, product and collection counts, last product update, Shopify Plus hints, business contact email and social links.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

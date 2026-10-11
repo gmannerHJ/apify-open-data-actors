@@ -1,0 +1,106 @@
+// Settlement stations referenced by Kalshi weather markets. US entries are keyed by the NWS climate-report code that
+// appears in the market rules ("New York City (CLINYC)"); international entries by the ICAO code embedded in the
+// series ticker (KXHIGHTEGLL -> EGLL). Coordinates are the station / airport location used for the forecast point.
+// sigmaF is the assumed 1-day-ahead standard deviation of the daily max/min forecast error in degrees Fahrenheit;
+// it is an operator assumption, not a measured value, and can be scaled or overridden from the input.
+export const STATIONS = {
+    CLINYC: { station: 'KNYC', city: 'New York City', region: 'NY', country: 'US', lat: 40.7789, lon: -73.9692, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIEWR: { station: 'KEWR', city: 'Newark', region: 'NJ', country: 'US', lat: 40.6825, lon: -74.1694, tz: 'America/New_York', sigmaF: 3.0 },
+    CLITTN: { station: 'KTTN', city: 'Trenton', region: 'NJ', country: 'US', lat: 40.2767, lon: -74.8136, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIPHL: { station: 'KPHL', city: 'Philadelphia', region: 'PA', country: 'US', lat: 39.8729, lon: -75.2437, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIBOS: { station: 'KBOS', city: 'Boston', region: 'MA', country: 'US', lat: 42.3606, lon: -71.0097, tz: 'America/New_York', sigmaF: 3.3 },
+    CLIPVD: { station: 'KPVD', city: 'Providence', region: 'RI', country: 'US', lat: 41.7225, lon: -71.4325, tz: 'America/New_York', sigmaF: 3.3 },
+    CLIBDL: { station: 'KBDL', city: 'Hartford', region: 'CT', country: 'US', lat: 41.9389, lon: -72.6833, tz: 'America/New_York', sigmaF: 3.2 },
+    CLIDCA: { station: 'KDCA', city: 'Washington DC', region: 'DC', country: 'US', lat: 38.8483, lon: -77.0342, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIBWI: { station: 'KBWI', city: 'Baltimore', region: 'MD', country: 'US', lat: 39.1733, lon: -76.6842, tz: 'America/New_York', sigmaF: 3.1 },
+    CLIRIC: { station: 'KRIC', city: 'Richmond', region: 'VA', country: 'US', lat: 37.5117, lon: -77.3233, tz: 'America/New_York', sigmaF: 3.1 },
+    CLIORF: { station: 'KORF', city: 'Norfolk', region: 'VA', country: 'US', lat: 36.9033, lon: -76.1922, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIRDU: { station: 'KRDU', city: 'Raleigh', region: 'NC', country: 'US', lat: 35.8922, lon: -78.7819, tz: 'America/New_York', sigmaF: 3.1 },
+    CLICLT: { station: 'KCLT', city: 'Charlotte', region: 'NC', country: 'US', lat: 35.2231, lon: -80.9550, tz: 'America/New_York', sigmaF: 3.1 },
+    CLIATL: { station: 'KATL', city: 'Atlanta', region: 'GA', country: 'US', lat: 33.6301, lon: -84.4418, tz: 'America/New_York', sigmaF: 3.0 },
+    CLIJAX: { station: 'KJAX', city: 'Jacksonville', region: 'FL', country: 'US', lat: 30.4953, lon: -81.6936, tz: 'America/New_York', sigmaF: 2.9 },
+    CLIMCO: { station: 'KMCO', city: 'Orlando', region: 'FL', country: 'US', lat: 28.4342, lon: -81.3250, tz: 'America/New_York', sigmaF: 2.7 },
+    CLITPA: { station: 'KTPA', city: 'Tampa', region: 'FL', country: 'US', lat: 27.9617, lon: -82.5403, tz: 'America/New_York', sigmaF: 2.6 },
+    CLIMIA: { station: 'KMIA', city: 'Miami', region: 'FL', country: 'US', lat: 25.7881, lon: -80.3169, tz: 'America/New_York', sigmaF: 2.3 },
+    CLIPIT: { station: 'KPIT', city: 'Pittsburgh', region: 'PA', country: 'US', lat: 40.4846, lon: -80.2144, tz: 'America/New_York', sigmaF: 3.2 },
+    CLIBUF: { station: 'KBUF', city: 'Buffalo', region: 'NY', country: 'US', lat: 42.9405, lon: -78.7322, tz: 'America/New_York', sigmaF: 3.3 },
+    CLICLE: { station: 'KCLE', city: 'Cleveland', region: 'OH', country: 'US', lat: 41.4058, lon: -81.8539, tz: 'America/New_York', sigmaF: 3.3 },
+    CLICMH: { station: 'KCMH', city: 'Columbus', region: 'OH', country: 'US', lat: 39.9950, lon: -82.8831, tz: 'America/New_York', sigmaF: 3.2 },
+    CLICVG: { station: 'KCVG', city: 'Cincinnati', region: 'OH', country: 'US', lat: 39.0444, lon: -84.6719, tz: 'America/New_York', sigmaF: 3.2 },
+    CLIDTW: { station: 'KDTW', city: 'Detroit', region: 'MI', country: 'US', lat: 42.2314, lon: -83.3308, tz: 'America/New_York', sigmaF: 3.3 },
+    CLIIND: { station: 'KIND', city: 'Indianapolis', region: 'IN', country: 'US', lat: 39.7250, lon: -86.2817, tz: 'America/New_York', sigmaF: 3.2 },
+    CLISDF: { station: 'KSDF', city: 'Louisville', region: 'KY', country: 'US', lat: 38.1811, lon: -85.7397, tz: 'America/New_York', sigmaF: 3.1 },
+    CLILEX: { station: 'KLEX', city: 'Lexington', region: 'KY', country: 'US', lat: 38.0408, lon: -84.6058, tz: 'America/New_York', sigmaF: 3.1 },
+    CLIBNA: { station: 'KBNA', city: 'Nashville', region: 'TN', country: 'US', lat: 36.1189, lon: -86.6892, tz: 'America/Chicago', sigmaF: 3.1 },
+    CLIMEM: { station: 'KMEM', city: 'Memphis', region: 'TN', country: 'US', lat: 35.0564, lon: -89.9864, tz: 'America/Chicago', sigmaF: 3.0 },
+    CLIBHM: { station: 'KBHM', city: 'Birmingham', region: 'AL', country: 'US', lat: 33.5656, lon: -86.7450, tz: 'America/Chicago', sigmaF: 3.0 },
+    CLIMSY: { station: 'KMSY', city: 'New Orleans', region: 'LA', country: 'US', lat: 29.9934, lon: -90.2508, tz: 'America/Chicago', sigmaF: 2.7 },
+    CLIORD: { station: 'KORD', city: 'Chicago', region: 'IL', country: 'US', lat: 41.9602, lon: -87.9316, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLIMDW: { station: 'KMDW', city: 'Chicago', region: 'IL', country: 'US', lat: 41.7868, lon: -87.7522, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLIMKE: { station: 'KMKE', city: 'Milwaukee', region: 'WI', country: 'US', lat: 42.9550, lon: -87.9044, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLIMSP: { station: 'KMSP', city: 'Minneapolis', region: 'MN', country: 'US', lat: 44.8831, lon: -93.2289, tz: 'America/Chicago', sigmaF: 3.6 },
+    CLIDSM: { station: 'KDSM', city: 'Des Moines', region: 'IA', country: 'US', lat: 41.5339, lon: -93.6531, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLISTL: { station: 'KSTL', city: 'St. Louis', region: 'MO', country: 'US', lat: 38.7525, lon: -90.3736, tz: 'America/Chicago', sigmaF: 3.3 },
+    CLISGF: { station: 'KSGF', city: 'Springfield', region: 'MO', country: 'US', lat: 37.2400, lon: -93.3900, tz: 'America/Chicago', sigmaF: 3.3 },
+    CLIMCI: { station: 'KMCI', city: 'Kansas City', region: 'MO', country: 'US', lat: 39.2976, lon: -94.7139, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLIOMA: { station: 'KOMA', city: 'Omaha', region: 'NE', country: 'US', lat: 41.3103, lon: -95.8992, tz: 'America/Chicago', sigmaF: 3.6 },
+    CLIOKC: { station: 'KOKC', city: 'Oklahoma City', region: 'OK', country: 'US', lat: 35.3889, lon: -97.6006, tz: 'America/Chicago', sigmaF: 3.5 },
+    CLIDFW: { station: 'KDFW', city: 'Dallas', region: 'TX', country: 'US', lat: 32.8978, lon: -97.0189, tz: 'America/Chicago', sigmaF: 3.2 },
+    CLIHOU: { station: 'KIAH', city: 'Houston', region: 'TX', country: 'US', lat: 29.9803, lon: -95.3597, tz: 'America/Chicago', sigmaF: 2.9 },
+    CLIAUS: { station: 'KATT', city: 'Austin', region: 'TX', country: 'US', lat: 30.3208, lon: -97.7603, tz: 'America/Chicago', sigmaF: 3.0 },
+    CLISAT: { station: 'KSAT', city: 'San Antonio', region: 'TX', country: 'US', lat: 29.5337, lon: -98.4698, tz: 'America/Chicago', sigmaF: 3.0 },
+    CLICLL: { station: 'KCLL', city: 'College Station', region: 'TX', country: 'US', lat: 30.5886, lon: -96.3639, tz: 'America/Chicago', sigmaF: 3.0 },
+    CLIELP: { station: 'KELP', city: 'El Paso', region: 'TX', country: 'US', lat: 31.8111, lon: -106.3758, tz: 'America/Denver', sigmaF: 3.0 },
+    CLIABQ: { station: 'KABQ', city: 'Albuquerque', region: 'NM', country: 'US', lat: 35.0419, lon: -106.6156, tz: 'America/Denver', sigmaF: 3.1 },
+    CLIDEN: { station: 'KDEN', city: 'Denver', region: 'CO', country: 'US', lat: 39.8466, lon: -104.6562, tz: 'America/Denver', sigmaF: 4.0 },
+    CLISLC: { station: 'KSLC', city: 'Salt Lake City', region: 'UT', country: 'US', lat: 40.7708, lon: -111.9650, tz: 'America/Denver', sigmaF: 3.3 },
+    CLIPHX: { station: 'KPHX', city: 'Phoenix', region: 'AZ', country: 'US', lat: 33.4278, lon: -112.0036, tz: 'America/Phoenix', sigmaF: 2.6 },
+    CLITUS: { station: 'KTUS', city: 'Tucson', region: 'AZ', country: 'US', lat: 32.1314, lon: -110.9553, tz: 'America/Phoenix', sigmaF: 2.7 },
+    CLILAS: { station: 'KLAS', city: 'Las Vegas', region: 'NV', country: 'US', lat: 36.0719, lon: -115.1634, tz: 'America/Los_Angeles', sigmaF: 2.7 },
+    CLILAX: { station: 'KLAX', city: 'Los Angeles', region: 'CA', country: 'US', lat: 33.9381, lon: -118.3889, tz: 'America/Los_Angeles', sigmaF: 2.8 },
+    CLIONT: { station: 'KONT', city: 'Ontario', region: 'CA', country: 'US', lat: 34.0531, lon: -117.5767, tz: 'America/Los_Angeles', sigmaF: 3.0 },
+    CLISAN: { station: 'KSAN', city: 'San Diego', region: 'CA', country: 'US', lat: 32.7336, lon: -117.1831, tz: 'America/Los_Angeles', sigmaF: 2.6 },
+    CLISFO: { station: 'KSFO', city: 'San Francisco', region: 'CA', country: 'US', lat: 37.6197, lon: -122.3647, tz: 'America/Los_Angeles', sigmaF: 3.0 },
+    CLIOAK: { station: 'KOAK', city: 'Oakland', region: 'CA', country: 'US', lat: 37.7214, lon: -122.2208, tz: 'America/Los_Angeles', sigmaF: 2.9 },
+    CLISJC: { station: 'KSJC', city: 'San Jose', region: 'CA', country: 'US', lat: 37.3594, lon: -121.9242, tz: 'America/Los_Angeles', sigmaF: 2.9 },
+    CLISMF: { station: 'KSMF', city: 'Sacramento', region: 'CA', country: 'US', lat: 38.6954, lon: -121.5908, tz: 'America/Los_Angeles', sigmaF: 3.0 },
+    CLIPDX: { station: 'KPDX', city: 'Portland', region: 'OR', country: 'US', lat: 45.5958, lon: -122.6093, tz: 'America/Los_Angeles', sigmaF: 3.1 },
+    CLISEA: { station: 'KSEA', city: 'Seattle', region: 'WA', country: 'US', lat: 47.4444, lon: -122.3139, tz: 'America/Los_Angeles', sigmaF: 2.8 },
+    CLIANC: { station: 'PANC', city: 'Anchorage', region: 'AK', country: 'US', lat: 61.1692, lon: -149.9983, tz: 'America/Anchorage', sigmaF: 3.3 },
+    CLIHNL: { station: 'PHNL', city: 'Honolulu', region: 'HI', country: 'US', lat: 21.3245, lon: -157.9294, tz: 'Pacific/Honolulu', sigmaF: 1.8 },
+    // International (ICAO in the series ticker). NWS has no forecast for these; Open-Meteo is the only source.
+    KSAN: { station: 'KSAN', city: 'San Diego', region: 'CA', country: 'US', lat: 32.7336, lon: -117.1831, tz: 'America/Los_Angeles', sigmaF: 2.6 },
+    CYYZ: { station: 'CYYZ', city: 'Toronto', region: 'ON', country: 'CA', lat: 43.6777, lon: -79.6248, tz: 'America/Toronto', sigmaF: 3.4 },
+    MMMX: { station: 'MMMX', city: 'Mexico City', region: null, country: 'MX', lat: 19.4363, lon: -99.0721, tz: 'America/Mexico_City', sigmaF: 2.9 },
+    SBGR: { station: 'SBGR', city: 'Sao Paulo', region: null, country: 'BR', lat: -23.4356, lon: -46.4731, tz: 'America/Sao_Paulo', sigmaF: 3.2 },
+    EGLL: { station: 'EGLL', city: 'London', region: null, country: 'GB', lat: 51.4775, lon: -0.4614, tz: 'Europe/London', sigmaF: 2.7 },
+    LFPG: { station: 'LFPG', city: 'Paris', region: null, country: 'FR', lat: 49.0097, lon: 2.5479, tz: 'Europe/Paris', sigmaF: 2.8 },
+    EBBR: { station: 'EBBR', city: 'Brussels', region: null, country: 'BE', lat: 50.9014, lon: 4.4844, tz: 'Europe/Brussels', sigmaF: 2.8 },
+    EHAM: { station: 'EHAM', city: 'Amsterdam', region: null, country: 'NL', lat: 52.3086, lon: 4.7639, tz: 'Europe/Amsterdam', sigmaF: 2.7 },
+    EDDB: { station: 'EDDB', city: 'Berlin', region: null, country: 'DE', lat: 52.3667, lon: 13.5033, tz: 'Europe/Berlin', sigmaF: 3.0 },
+    EDDF: { station: 'EDDF', city: 'Frankfurt', region: null, country: 'DE', lat: 50.0379, lon: 8.5622, tz: 'Europe/Berlin', sigmaF: 2.9 },
+    LSGG: { station: 'LSGG', city: 'Geneva', region: null, country: 'CH', lat: 46.2381, lon: 6.1089, tz: 'Europe/Zurich', sigmaF: 3.0 },
+    LSSG: { station: 'LSGG', city: 'Geneva', region: null, country: 'CH', lat: 46.2381, lon: 6.1089, tz: 'Europe/Zurich', sigmaF: 3.0 },
+    LTFM: { station: 'LTFM', city: 'Istanbul', region: null, country: 'TR', lat: 41.2753, lon: 28.7519, tz: 'Europe/Istanbul', sigmaF: 2.9 },
+    OMDB: { station: 'OMDB', city: 'Dubai', region: null, country: 'AE', lat: 25.2528, lon: 55.3644, tz: 'Asia/Dubai', sigmaF: 2.3 },
+    VABB: { station: 'VABB', city: 'Mumbai', region: null, country: 'IN', lat: 19.0887, lon: 72.8679, tz: 'Asia/Kolkata', sigmaF: 2.3 },
+    WSSS: { station: 'WSSS', city: 'Singapore', region: null, country: 'SG', lat: 1.3644, lon: 103.9915, tz: 'Asia/Singapore', sigmaF: 2.0 },
+    VHHH: { station: 'VHHH', city: 'Hong Kong', region: null, country: 'HK', lat: 22.3080, lon: 113.9185, tz: 'Asia/Hong_Kong', sigmaF: 2.3 },
+    ZSPD: { station: 'ZSPD', city: 'Shanghai', region: null, country: 'CN', lat: 31.1434, lon: 121.8052, tz: 'Asia/Shanghai', sigmaF: 2.8 },
+    ZBAA: { station: 'ZBAA', city: 'Beijing', region: null, country: 'CN', lat: 40.0801, lon: 116.5846, tz: 'Asia/Shanghai', sigmaF: 3.1 },
+    RKSI: { station: 'RKSI', city: 'Seoul', region: null, country: 'KR', lat: 37.4692, lon: 126.4505, tz: 'Asia/Seoul', sigmaF: 2.8 },
+    RJTT: { station: 'RJTT', city: 'Tokyo', region: null, country: 'JP', lat: 35.5533, lon: 139.7811, tz: 'Asia/Tokyo', sigmaF: 2.6 },
+    YSSY: { station: 'YSSY', city: 'Sydney', region: null, country: 'AU', lat: -33.9461, lon: 151.1772, tz: 'Australia/Sydney', sigmaF: 3.0 },
+};
+
+// Resolve a market to a station: the CLI code in the rules text first, then an ICAO code in the series ticker.
+export function resolveStation(seriesTicker, rulesText) {
+    const cli = /\((CLI[A-Z0-9]{2,5})\)|\bat (CLI[A-Z0-9]{2,5})\b/.exec(rulesText || '');
+    const code = cli?.[1] || cli?.[2];
+    if (code && STATIONS[code]) return { code, ...STATIONS[code] };
+    const icaoInRules = /\(([A-Z]{4})\)/.exec(rulesText || '')?.[1];
+    if (icaoInRules && STATIONS[icaoInRules]) return { code: icaoInRules, ...STATIONS[icaoInRules] };
+    const m = /^KX(?:HIGH|LOW|RAIN)T?([A-Z]{4})$/.exec(seriesTicker || '');
+    if (m && STATIONS[m[1]]) return { code: m[1], ...STATIONS[m[1]] };
+    return code ? { code, unknown: true } : null;
+}

@@ -1,0 +1,80 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "storeUrl": { "type": "string" },
+            "finalUrl": { "type": ["string", "null"] },
+            "domain": { "type": "string" },
+            "httpStatus": { "type": ["integer", "null"] },
+            "isShopify": { "type": "boolean" },
+            "storefrontType": { "type": "string" },
+            "shopName": { "type": ["string", "null"] },
+            "myshopifyDomain": { "type": ["string", "null"] },
+            "shopId": { "type": ["integer", "null"] },
+            "themeName": { "type": ["string", "null"] },
+            "themeSchemaName": { "type": ["string", "null"] },
+            "themeSchemaVersion": { "type": ["string", "null"] },
+            "themeStoreId": { "type": ["integer", "null"] },
+            "themeId": { "type": ["integer", "null"] },
+            "themeSource": { "type": ["string", "null"] },
+            "currency": { "type": ["string", "null"] },
+            "moneyFormat": { "type": ["string", "null"] },
+            "locale": { "type": ["string", "null"] },
+            "country": { "type": ["string", "null"] },
+            "city": { "type": ["string", "null"] },
+            "province": { "type": ["string", "null"] },
+            "shipsToCountries": { "type": ["array", "null"] },
+            "shopPayInstallments": { "type": ["boolean", "null"] },
+            "productCount": { "type": ["integer", "null"] },
+            "productCountSource": { "type": ["string", "null"] },
+            "collectionCount": { "type": ["integer", "null"] },
+            "lastProductUpdate": { "type": ["string", "null"] },
+            "lastProductCreated": { "type": ["string", "null"] },
+            "productsSampled": { "type": "integer" },
+            "priceMin": { "type": ["number", "null"] },
+            "priceMax": { "type": ["number", "null"] },
+            "topVendors": { "type": "array", "items": { "type": "string" } },
+            "topProductTypes": { "type": "array", "items": { "type": "string" } },
+            "apps": { "type": "array" },
+            "appNames": { "type": "array", "items": { "type": "string" } },
+            "appCount": { "type": "integer" },
+            "appsByCategory": { "type": "object" },
+            "plusHints": { "type": "array", "items": { "type": "string" } },
+            "likelyShopifyPlus": { "type": "boolean" },
+            "contactEmail": { "type": ["string", "null"] },
+            "contactEmails": { "type": "array", "items": { "type": "string" } },
+            "social": { "type": ["object", "null"] },
+            "thirdPartyHosts": { "type": "array", "items": { "type": "string" } },
+            "error": { "type": ["string", "null"] },
+            "fetchedAt": { "type": "string" },
+            "durationMs": { "type": ["integer", "null"] }
+        },
+        "required": ["storeUrl", "domain", "isShopify", "storefrontType", "fetchedAt"]
+    },
+    "views": {
+        "overview": {
+            "title": "Stores",
+            "transformation": {
+                "fields": ["storeUrl", "shopName", "storefrontType", "themeSchemaName", "appNames", "currency", "country", "productCount", "lastProductUpdate", "contactEmail", "likelyShopifyPlus", "error"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "storeUrl": { "label": "Store", "format": "link" },
+                    "shopName": { "label": "Name", "format": "text" },
+                    "storefrontType": { "label": "Type", "format": "text" },
+                    "themeSchemaName": { "label": "Theme", "format": "text" },
+                    "appNames": { "label": "Apps", "format": "array" },
+                    "currency": { "label": "Currency", "format": "text" },
+                    "country": { "label": "Country", "format": "text" },
+                    "productCount": { "label": "Products", "format": "number" },
+                    "lastProductUpdate": { "label": "Last product update", "format": "date" },
+                    "contactEmail": { "label": "Contact email", "format": "text" },
+                    "likelyShopifyPlus": { "label": "Plus?", "format": "boolean" },
+                    "error": { "label": "Error", "format": "text" }
+                }
+            }
+        }
+    }
+}

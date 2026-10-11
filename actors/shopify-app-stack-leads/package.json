@@ -1,0 +1,21 @@
+{
+  "name": "shopify-app-stack-leads",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shopify storefront tech stack: theme, installed apps by script fingerprints (Klaviyo, Yotpo, Recharge, Loox, Judge.me, Gorgias, Attentive, Privy, Bold and more), currency, product count, last product update and public business contact email.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

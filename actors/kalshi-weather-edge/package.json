@@ -1,0 +1,21 @@
+{
+  "name": "kalshi-weather-edge",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Open Kalshi daily temperature and rain bracket markets joined to NWS and Open-Meteo forecasts for the settlement station, with a simple normal-model probability per bracket and the difference to the market price. Descriptive data only.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "apify": "^3.7.2"
+  },
+  "devDependencies": {
+    "apify-cli": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}

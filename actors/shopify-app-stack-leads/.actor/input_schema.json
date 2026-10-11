@@ -1,0 +1,56 @@
+{
+    "title": "Shopify App Stack Leads input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "storeUrls": {
+            "title": "Storefront URLs",
+            "type": "array",
+            "editor": "requestListSources",
+            "description": "Shopify storefront homepages (custom domains or *.myshopify.com). Duplicates by domain are removed.",
+            "prefill": [{ "url": "https://www.allbirds.com" }, { "url": "https://www.beardbrand.com" }]
+        },
+        "storeList": {
+            "title": "Storefront list (one per line)",
+            "type": "string",
+            "editor": "textarea",
+            "description": "Alternative to the list above: paste domains or URLs, one per line (commas and semicolons also work). Lines starting with # are ignored.",
+            "example": "pipsnacks.com\nugmonk.com"
+        },
+        "maxStores": {
+            "title": "Maximum stores",
+            "type": "integer",
+            "default": 1000,
+            "minimum": 1,
+            "maximum": 5000,
+            "description": "Analyse at most this many storefronts. The run cost is bounded by this number."
+        },
+        "fetchProducts": {
+            "title": "Read the public product feed",
+            "type": "boolean",
+            "default": true,
+            "description": "Fetch /products.json (public on most Shopify stores) for last product update, price range, top vendors and product types. Exact product counts come from /meta.json regardless."
+        },
+        "maxProductPages": {
+            "title": "Product feed pages",
+            "type": "integer",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 20,
+            "description": "Pages of 250 products to read per store. One page is enough for the last update date and price range; more pages only matter for stores with over 250 products when the exact count is not available from /meta.json."
+        },
+        "extractEmails": {
+            "title": "Extract public business email",
+            "type": "boolean",
+            "default": true,
+            "description": "Collect role mailboxes (hello@, support@, wholesale@ ...) and mailboxes on the store's own domain that are published on the homepage. Personal mailboxes on freemail providers and named people on third-party domains are skipped."
+        },
+        "onlyShopify": {
+            "title": "Only output Shopify stores",
+            "type": "boolean",
+            "default": false,
+            "description": "Skip rows for sites that are reachable but not on Shopify. Unreachable sites are always recorded (not charged) so failures are visible."
+        }
+    },
+    "required": []
+}

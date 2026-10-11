@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Kalshi Weather Edge output",
+    "description": "One row per open market: ticker, city and settlement station, bracket bounds, close time, bid/ask/mid and book depth, NWS and Open-Meteo forecast for the target date, model probability, edge and notes.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Markets",
+            "description": "One row per open market: ticker, city and settlement station, bracket bounds, close time, bid/ask/mid and book depth, NWS and Open-Meteo forecast for the target date, model probability, edge and notes.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

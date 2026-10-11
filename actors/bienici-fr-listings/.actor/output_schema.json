@@ -1,0 +1,13 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Bien'ici France Listings output",
+    "description": "One row per listing: price, surface, rooms, DPE energy class, city, postcode, coordinates, publication date, agency flag, price-drop flag and URL.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Listings",
+            "description": "One row per listing: price, surface, rooms, DPE energy class, city, postcode, coordinates, publication date, agency flag, price-drop flag and URL.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

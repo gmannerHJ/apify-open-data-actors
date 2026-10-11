@@ -1,0 +1,12 @@
+{
+    "actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Flat fee charged once per run, covering series discovery and market listing.",
+        "eventPriceUsd": 0.005
+    },
+    "market-scored": {
+        "eventTitle": "Market scored",
+        "eventDescription": "One open market with its settlement station resolved, NWS and Open-Meteo forecast for the target date attached, bracket probability computed and edge versus the market mid. Markets that cannot be scored are included free with a note.",
+        "eventPriceUsd": 0.004
+    }
+}
